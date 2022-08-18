@@ -16,5 +16,10 @@ namespace MatthewEvans___BFM1___Software_I___C968
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
