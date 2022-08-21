@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace MatthewEvans___BFM1___Software_I___C968
 {
-    internal class Product : Part
+    public class Product : Part
     {
         BindingList<Part> AssociatedParts = new BindingList<Part>();
 
-        private int ProductID { get; set; }
+        public int ProductID { get; set; }
         private string Name { get; set; }
         public decimal Price { get; set; }
         public int InStock { get; set; }

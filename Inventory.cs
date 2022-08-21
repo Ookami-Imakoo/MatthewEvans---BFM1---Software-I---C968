@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MatthewEvans___BFM1___Software_I___C968
 {
-    internal class Inventory : Product
+    public class Inventory : Product
     {
         BindingList<Product> Products = new BindingList<Product>();
         BindingList<Part> AllParts = new BindingList<Part>();
