@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MatthewEvans___BFM1___Software_I___C968
 {
-    public class Product : Part
+    public class Product
     {
         BindingList<Part> AssociatedParts = new BindingList<Part>();
 

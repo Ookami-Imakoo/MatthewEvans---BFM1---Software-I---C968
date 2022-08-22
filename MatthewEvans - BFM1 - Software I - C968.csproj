@@ -52,6 +52,7 @@
     <Compile Include="AddProduct.Designer.cs">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Inhouse.cs" />
     <Compile Include="MainScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +78,7 @@
     <Compile Include="ModifyProduct.Designer.cs">
       <DependentUpon>ModifyProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Outsourced.cs" />
     <Compile Include="Part.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
