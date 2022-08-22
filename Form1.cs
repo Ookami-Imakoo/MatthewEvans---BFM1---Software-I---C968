@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace MatthewEvans___BFM1___Software_I___C968
 {
-    public partial class Form1 : Form
+    public partial class mainScreen : Form
     {
-        public Form1()
+        public mainScreen()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
