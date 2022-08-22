@@ -12,19 +12,19 @@ namespace MatthewEvans___BFM1___Software_I___C968
         BindingList<Part> AssociatedParts = new BindingList<Part>();
 
         public int ProductID { get; set; }
-        private string Name { get; set; }
+        public string Name { get; set; }
         public decimal Price { get; set; }
         public int InStock { get; set; }
         public int Min { get; set; }
         public int Max { get; set; }
 
-        private void addAssociatedPart(Part  Part)
+        public void addAssociatedPart(Part  Part)
         {
             AssociatedParts.AddNew();
 
         }
 
-        private bool removeAssoicatedPart(int x)
+        public bool removeAssoicatedPart(int x)
         {
            for(int i = 0; i < AssociatedParts.Count; i++)
             {
@@ -38,7 +38,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
         
         }
 
-        private Part lookupAssoicatedPart(int x)
+        public Part lookupAssoicatedPart(int x)
         {
             for (int i = 0; i < AssociatedParts.Count; i++)
             {

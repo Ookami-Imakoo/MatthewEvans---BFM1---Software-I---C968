@@ -8,11 +8,11 @@ namespace MatthewEvans___BFM1___Software_I___C968
 {
     public abstract class Part
     {
-        private int PartID { get; set; }
-        private string Name { get; set; }
-        private decimal Price { get; set; }
-        private int InStock { get; set; }
-        private int Min { get; set; }
-        private int Max { get; set; }
+        public int PartID { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public int InStock { get; set; }
+        public int Min { get; set; }
+        public int Max { get; set; }
     }
 }
