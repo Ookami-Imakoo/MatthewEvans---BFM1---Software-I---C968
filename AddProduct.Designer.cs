@@ -37,8 +37,8 @@
             this.partsAssociatedDeleteButton = new System.Windows.Forms.Button();
             this.partsAssociatedLabel = new System.Windows.Forms.Label();
             this.partsAssociatedDataGridView = new System.Windows.Forms.DataGridView();
-            this.addProductCancelButton = new System.Windows.Forms.Button();
-            this.addProductSaveButton = new System.Windows.Forms.Button();
+            this.productCancelButton = new System.Windows.Forms.Button();
+            this.productSaveButton = new System.Windows.Forms.Button();
             this.minValue = new System.Windows.Forms.TextBox();
             this.minLabel = new System.Windows.Forms.Label();
             this.maxValue = new System.Windows.Forms.TextBox();
@@ -135,23 +135,23 @@
             this.partsAssociatedDataGridView.Size = new System.Drawing.Size(720, 251);
             this.partsAssociatedDataGridView.TabIndex = 13;
             // 
-            // addProductCancelButton
+            // productCancelButton
             // 
-            this.addProductCancelButton.Location = new System.Drawing.Point(1314, 853);
-            this.addProductCancelButton.Name = "addProductCancelButton";
-            this.addProductCancelButton.Size = new System.Drawing.Size(89, 41);
-            this.addProductCancelButton.TabIndex = 19;
-            this.addProductCancelButton.Text = "Cancel";
-            this.addProductCancelButton.UseVisualStyleBackColor = true;
+            this.productCancelButton.Location = new System.Drawing.Point(1314, 853);
+            this.productCancelButton.Name = "productCancelButton";
+            this.productCancelButton.Size = new System.Drawing.Size(89, 41);
+            this.productCancelButton.TabIndex = 19;
+            this.productCancelButton.Text = "Cancel";
+            this.productCancelButton.UseVisualStyleBackColor = true;
             // 
-            // addProductSaveButton
+            // productSaveButton
             // 
-            this.addProductSaveButton.Location = new System.Drawing.Point(1219, 853);
-            this.addProductSaveButton.Name = "addProductSaveButton";
-            this.addProductSaveButton.Size = new System.Drawing.Size(89, 41);
-            this.addProductSaveButton.TabIndex = 18;
-            this.addProductSaveButton.Text = "Save";
-            this.addProductSaveButton.UseVisualStyleBackColor = true;
+            this.productSaveButton.Location = new System.Drawing.Point(1219, 853);
+            this.productSaveButton.Name = "productSaveButton";
+            this.productSaveButton.Size = new System.Drawing.Size(89, 41);
+            this.productSaveButton.TabIndex = 18;
+            this.productSaveButton.Text = "Save";
+            this.productSaveButton.UseVisualStyleBackColor = true;
             // 
             // minValue
             // 
@@ -267,8 +267,8 @@
             this.Controls.Add(this.nameLabel);
             this.Controls.Add(this.idValue);
             this.Controls.Add(this.idLabel);
-            this.Controls.Add(this.addProductCancelButton);
-            this.Controls.Add(this.addProductSaveButton);
+            this.Controls.Add(this.productCancelButton);
+            this.Controls.Add(this.productSaveButton);
             this.Controls.Add(this.partsAssociatedDeleteButton);
             this.Controls.Add(this.partsAssociatedLabel);
             this.Controls.Add(this.partsAssociatedDataGridView);
@@ -300,8 +300,8 @@
         private System.Windows.Forms.Button partsAssociatedDeleteButton;
         private System.Windows.Forms.Label partsAssociatedLabel;
         private System.Windows.Forms.DataGridView partsAssociatedDataGridView;
-        private System.Windows.Forms.Button addProductCancelButton;
-        private System.Windows.Forms.Button addProductSaveButton;
+        private System.Windows.Forms.Button productCancelButton;
+        private System.Windows.Forms.Button productSaveButton;
         private System.Windows.Forms.TextBox minValue;
         private System.Windows.Forms.Label minLabel;
         private System.Windows.Forms.TextBox maxValue;
