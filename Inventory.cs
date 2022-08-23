@@ -14,6 +14,8 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         Product myProduct = new Product();
 
+       // Part mypart = new Part();
+
         /// <summary>
         /// Function for createing new products.
         /// </summary>
@@ -85,16 +87,17 @@ namespace MatthewEvans___BFM1___Software_I___C968
         /// </summary>
         /// <param name=""> Represents the Part to be deleted</param>
         /// <returns> Returns true if part is deleted, else returns false. </returns>
-        public bool deletePart(Part)
+        public bool deletePart(Part myPart)
         {
             for (int i = 0 ; i < AllParts.Count ; i++)
             {
-                if (Part.Equals(AllParts[i]))
+                if (myPart != AllParts[i])
                 {
-                    AllParts.RemoveAt(i);
-                    return true;
+                    continue;
                 }
-                continue;
+                AllParts.RemoveAt(i);
+                return true;
+
             }
             return false;
         }
