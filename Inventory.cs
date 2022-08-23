@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace MatthewEvans___BFM1___Software_I___C968
 {
-    public class Inventory
+    public class Inventory : Part
     {
         BindingList<Product> Products = new BindingList<Product>();
         BindingList<Part> AllParts = new BindingList<Part>();
+
+        Product myProduct = new Product();
 
         /// <summary>
         /// Function for createing new products.
@@ -30,7 +32,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
         {
             for (int i = 0; i < Products.Count; i++)
             {
-                if (x == ProductID)
+                if (x == myProduct.ProductID)
                 {
                     Products.RemoveAt(i);
                     return true;
@@ -48,7 +50,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
         {
             for (int i = 0; i < Products.Count; i++)
             {
-                if (x == ProductID)
+                if (x == myProduct.ProductID)
                 {
                     return Products[x];
                 }
@@ -56,11 +58,11 @@ namespace MatthewEvans___BFM1___Software_I___C968
             return null;
         }
 
-        public void updateProduct(int x, Product)
+        public void updateProduct(int x, Product myProduct)
         {
             for (int i = 0 ; i < Products.Count ; i++)
             {
-                if (x == ProductID)
+                if (x == myProduct.ProductID)
                 {
                     /// Not sure what to do now XD, going to need to figure out what needs to be done in this function.
                 }
@@ -71,7 +73,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
         /// Represents a function that adds a Part to the All Parts list.
         /// </summary>
         /// <param name=""> Represents a part to be addded to the All Parts list. </param>
-        public void addPart(Part)
+        public void addPart(Part myPart)
         {
             AllParts.AddNew();
         }
@@ -87,12 +89,12 @@ namespace MatthewEvans___BFM1___Software_I___C968
         {
             for (int i = 0 ; i < AllParts.Count ; i++)
             {
-                if (Part.ReferenceEquals != Part)
+                if (Part.Equals(AllParts[i]))
                 {
-                    continue;
+                    AllParts.RemoveAt(i);
+                    return true;
                 }
-                AllParts.RemoveAt(i);
-                return true;
+                continue;
             }
             return false;
         }
