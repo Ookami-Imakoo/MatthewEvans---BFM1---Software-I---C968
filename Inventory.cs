@@ -14,8 +14,6 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         Product myProduct = new Product();
 
-       // Part mypart = new Part();
-
         /// <summary>
         /// Function for createing new products.
         /// </summary>
@@ -60,16 +58,20 @@ namespace MatthewEvans___BFM1___Software_I___C968
             return null;
         }
 
+        /*
+         * Still unsure what to do with this function, hopeing that it will be more clear as I put the application together.
+         * 
         public void updateProduct(int x, Product myProduct)
         {
             for (int i = 0 ; i < Products.Count ; i++)
             {
                 if (x == myProduct.ProductID)
                 {
-                    /// Not sure what to do now XD, going to need to figure out what needs to be done in this function.
+                    Products.Remove[i];
                 }
             }
         }
+        */
 
         /// <summary>
         /// Represents a function that adds a Part to the All Parts list.
@@ -102,16 +104,38 @@ namespace MatthewEvans___BFM1___Software_I___C968
             return false;
         }
 
+        /// <summary>
+        /// Refers to the function that will look up a part based on an integer (PartID) input
+        /// </summary>
+        /// <param name="x"> Refers to the Part ID to be looked up </param>
+        /// <returns> Returns the part if found and null if not found </returns>
         public Part lookupPart(int x)
         {
             for (int i = 0; i < AllParts.Count; i++)
             {
                 if (x == PartID)
                 {
-                    return AllParts[x];
+                    return AllParts[i];
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// Refers to the function that will update a part, by first ittering though the binding list 
+        /// and deleteing the part if found, and replaceing it with the Part provided. </summary>
+        /// <param name="x"> Represents the part number wished to be replaced. </param>
+        /// <param name="myPart"> Represents the part to be placed in the list after the removal of the old data. </param>
+        public void updatePart(int x, Part myPart)
+        {
+            for (int i = 0 ; i < AllParts.Count ; i++)
+            {
+                if (x == PartID)
+                {
+                    AllParts.RemoveAt(x);
+                    AllParts.Add(myPart);
+                }
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
         public int Min { get; set; }
         public int Max { get; set; }
 
+
         public void addAssociatedPart(Part  Part)
         {
             AssociatedParts.AddNew();
