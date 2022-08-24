@@ -47,6 +47,8 @@
             this.minLabel = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
+            this.companyNameValue = new System.Windows.Forms.TextBox();
+            this.companyNameLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // addPartLabel
@@ -69,6 +71,7 @@
             this.inhouseRadioButton.TabStop = true;
             this.inhouseRadioButton.Text = "In-House";
             this.inhouseRadioButton.UseVisualStyleBackColor = true;
+            this.inhouseRadioButton.CheckedChanged += new System.EventHandler(this.inhouseRadioButton_CheckedChanged);
             // 
             // outsourcedRadioButton
             // 
@@ -80,6 +83,7 @@
             this.outsourcedRadioButton.TabStop = true;
             this.outsourcedRadioButton.Text = "Outsourced";
             this.outsourcedRadioButton.UseVisualStyleBackColor = true;
+            this.outsourcedRadioButton.CheckedChanged += new System.EventHandler(this.outsourcedRadioButton_CheckedChanged);
             // 
             // idLabel
             // 
@@ -163,7 +167,7 @@
             // 
             // machineIDValue
             // 
-            this.machineIDValue.Location = new System.Drawing.Point(205, 392);
+            this.machineIDValue.Location = new System.Drawing.Point(245, 392);
             this.machineIDValue.Name = "machineIDValue";
             this.machineIDValue.Size = new System.Drawing.Size(180, 35);
             this.machineIDValue.TabIndex = 14;
@@ -201,6 +205,7 @@
             this.cancelButton.TabIndex = 18;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // saveButton
             // 
@@ -210,6 +215,23 @@
             this.saveButton.TabIndex = 17;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
+            // this.saveButton.Click += new System.EventHandler(this.saveButton_Click);  **Work in Progress**
+            // 
+            // companyNameValue
+            // 
+            this.companyNameValue.Location = new System.Drawing.Point(245, 392);
+            this.companyNameValue.Name = "companyNameValue";
+            this.companyNameValue.Size = new System.Drawing.Size(180, 35);
+            this.companyNameValue.TabIndex = 20;
+            // 
+            // companyNameLabel
+            // 
+            this.companyNameLabel.AutoSize = true;
+            this.companyNameLabel.Location = new System.Drawing.Point(79, 395);
+            this.companyNameLabel.Name = "companyNameLabel";
+            this.companyNameLabel.Size = new System.Drawing.Size(163, 30);
+            this.companyNameLabel.TabIndex = 19;
+            this.companyNameLabel.Text = "Company Name";
             // 
             // addPartScreen
             // 
@@ -217,6 +239,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(558, 544);
+            this.Controls.Add(this.companyNameValue);
+            this.Controls.Add(this.companyNameLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.minValue);
@@ -266,5 +290,7 @@
         private System.Windows.Forms.Label minLabel;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.TextBox companyNameValue;
+        private System.Windows.Forms.Label companyNameLabel;
     }
 }

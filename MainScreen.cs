@@ -20,5 +20,16 @@ namespace MatthewEvans___BFM1___Software_I___C968
             partsDataGridView.DataSource = Product.AssociatedParts;
             productsDataGridView.DataSource = Inventory.Products;
         }
+
+        private void partsAddButton_Click(object sender, EventArgs e)
+        {
+            addPartScreen addPartScreen = new addPartScreen();
+            addPartScreen.Show();
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

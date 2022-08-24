@@ -103,6 +103,7 @@
             this.partsAddButton.TabIndex = 5;
             this.partsAddButton.Text = "Add";
             this.partsAddButton.UseVisualStyleBackColor = true;
+            this.partsAddButton.Click += new System.EventHandler(this.partsAddButton_Click);
             // 
             // partsModifyButton
             // 
@@ -194,6 +195,7 @@
             this.exitButton.TabIndex = 15;
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // mainScreen
             // 
