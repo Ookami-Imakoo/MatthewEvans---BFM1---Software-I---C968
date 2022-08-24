@@ -15,6 +15,10 @@ namespace MatthewEvans___BFM1___Software_I___C968
         public mainScreen()
         {
             InitializeComponent();
+
+            //set data source for Parts datagrid
+            partsDataGridView.DataSource = Product.AssociatedParts;
+            productsDataGridView.DataSource = Inventory.Products;
         }
     }
 }

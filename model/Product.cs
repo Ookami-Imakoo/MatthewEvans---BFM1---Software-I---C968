@@ -9,7 +9,6 @@ namespace MatthewEvans___BFM1___Software_I___C968
 {
     public class Product
     {
-        BindingList<Part> AssociatedParts = new BindingList<Part>();
 
         public int ProductID { get; set; }
         public string Name { get; set; }
@@ -18,8 +17,9 @@ namespace MatthewEvans___BFM1___Software_I___C968
         public int Min { get; set; }
         public int Max { get; set; }
 
+        public static BindingList<Part> AssociatedParts = new BindingList<Part>();
 
-        public void addAssociatedPart(Part  Part)
+        public void addAssociatedPart(int ProductID, string Name, decimal Price, int InStock, int Min, int Max)
         {
             AssociatedParts.AddNew();
 

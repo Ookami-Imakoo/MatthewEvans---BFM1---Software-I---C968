@@ -9,8 +9,8 @@ namespace MatthewEvans___BFM1___Software_I___C968
 {
     public class Inventory : Part
     {
-        BindingList<Product> Products = new BindingList<Product>();
-        BindingList<Part> AllParts = new BindingList<Part>();
+        public static BindingList<Product> Products = new BindingList<Product>();
+        public BindingList<Part> AllParts = new BindingList<Part>();
 
         Product myProduct = new Product();
 
