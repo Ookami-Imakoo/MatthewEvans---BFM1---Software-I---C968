@@ -43,25 +43,33 @@ namespace MatthewEvans___BFM1___Software_I___C968
         }
 
 
-        /*
+
         private void saveButton_Click(object sender, EventArgs e)
         {
-            Product product = new Product();
-            int machineID;
-            string companyName;
+            int PartID;
+            string Name;
+            decimal Price;
+            int InStock;
+            int Min;
+            int Max;
+
+            int MachineID;
+            string CompanyName;
 
 
-            product.ProductID = Int32.Parse(idValue.Text);
-            product.Name = nameValue.Text;
-            product.Price = Int32.Parse(priceCostValue.Text);
-            product.InStock = Int32.Parse(inventoryValue.Text);
-            product.Min = Int32.Parse(minValue.Text);
-            product.Max = Int32.Parse(maxValue.Text);
+            PartID = Int32.Parse(idValue.Text);
+            Name = nameValue.Text;
+            Price = Decimal.Parse(priceCostValue.Text);
+            InStock = Int32.Parse(inventoryValue.Text);
+            Min = Int32.Parse(minValue.Text);
+            Max = Int32.Parse(maxValue.Text);
+            MachineID = Int32.Parse(machineIDValue.Text);
+            CompanyName = companyNameValue.Text;
 
-            if (inhouseRadioButton.Checked == true) {
-                machineID = Int32.Parse(machineIDValue.Text);
-            }
-            else { companyName = companyNameValue.Text; };
-        */
+            Inventory.addPart(PartID, Name, Price, InStock, Min, Max);
+
+            this.Close();
+        }
+        
     }
     }

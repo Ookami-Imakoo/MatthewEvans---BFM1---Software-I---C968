@@ -16,5 +16,11 @@ namespace MatthewEvans___BFM1___Software_I___C968
         {
             InitializeComponent();
         }
+
+        //closes add product screen
+        private void productCancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

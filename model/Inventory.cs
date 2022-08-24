@@ -10,7 +10,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
     public class Inventory : Part
     {
         public static BindingList<Product> Products = new BindingList<Product>();
-        public BindingList<Part> AllParts = new BindingList<Part>();
+        public static BindingList<Part> AllParts = new BindingList<Part>();
 
         Product myProduct = new Product();
 
@@ -77,7 +77,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
         /// Represents a function that adds a Part to the All Parts list.
         /// </summary>
         /// <param name=""> Represents a part to be addded to the All Parts list. </param>
-        public void addPart(Part myPart)
+        public static void addPart(int PartID, string Name, decimal Price, int InStock, int Min, int Max)
         {
             AllParts.AddNew();
         }
