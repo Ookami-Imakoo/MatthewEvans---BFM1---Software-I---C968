@@ -46,6 +46,35 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            /*
+             int PartID;
+             string Name;
+             decimal Price;
+             int InStock;
+             int Min;
+             int Max;
+
+             int MachineID;
+             string CompanyName;
+
+
+             PartID = 1; //Int32.Parse(idValue.Text);
+             Name = "Steven"; //nameValue.Text;
+             Price = 1.00m; //Decimal.Parse(priceCostValue.Text);
+             InStock = 1;  //Int32.Parse(inventoryValue.Text);
+             Min = 1;  //Int32.Parse(minValue.Text);
+             Max = 1; //Int32.Parse(maxValue.Text);
+             MachineID = 1; //Int32.Parse(machineIDValue.Text);
+             CompanyName = "Steven and Sons"; //companyNameValue.Text;
+
+             Inventory.Add(PartID, Name, Price, InStock, Min, Max);
+             */
+
+             this.Close();
+        }
+
+        private void saveButton_Click_1(object sender, EventArgs e)
+        {
             int PartID;
             string Name;
             decimal Price;
@@ -70,6 +99,5 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
             this.Close();
         }
-        
     }
     }

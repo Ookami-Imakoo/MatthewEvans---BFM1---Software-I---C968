@@ -25,7 +25,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
         private void partsAddButton_Click(object sender, EventArgs e)
         {
             addPartScreen addPartScreen = new addPartScreen();
-            addPartScreen.Show();
+            addPartScreen.ShowDialog();
         }
 
         //opens add product screen

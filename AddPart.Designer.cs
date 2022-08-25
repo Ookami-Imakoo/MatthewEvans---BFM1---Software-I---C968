@@ -215,7 +215,7 @@
             this.saveButton.TabIndex = 17;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
-            // this.saveButton.Click += new System.EventHandler(this.saveButton_Click);  **Work in Progress**
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click_1);
             // 
             // companyNameValue
             // 
