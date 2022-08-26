@@ -13,29 +13,22 @@ namespace MatthewEvans___BFM1___Software_I___C968
 {
     public partial class mainScreen : Form
     {
+        //Initialize Inventory
+        Inventory inventory = new Inventory();
+
         public mainScreen()
         {
             InitializeComponent();
 
-            //set data source for Parts datagrid
-            partsDataGridView.DataSource = Inventory.AllParts;
-            productsDataGridView.DataSource = Inventory.Products;
+            //sets properties for MainScreen datagridviews
+            MainScreenSetup();
 
-            //Remove bottom row from datagrids
-            partsDataGridView.AllowUserToAddRows = false;
-            productsDataGridView.AllowUserToAddRows = false;
-
-            //Test Data Below
-            Inventory inventory = new Inventory();
-            inventory.addPart(1, "Georgie", 1.00m, 15, 1, 20);
-            inventory.addPart(2, "Sean", 2.99m, 50, 7, 50);
-            inventory.addPart(3, "Justin", 100.00m, 100, 1, 100);
-            inventory.addPart(4, "Eric", 0.00m, 1, 1, 1);
-            inventory.addPart(5, "Hindrix", 10.00m, 150, 1, 100);
-            inventory.addPart(6, "Rox", 11.50m, 1, 1, 1);
+            //sets up sampel data for debug
+            SetupSampelData();
 
         }
 
+        //clears the autoselection of rows
         private void partsDataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
            partsDataGridView.ClearSelection();
@@ -58,27 +51,29 @@ namespace MatthewEvans___BFM1___Software_I___C968
         //closes application
         private void exitButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            //this.Close();
+
+            //test code for figureing out why child objects added to Allparts list not showing up in list properly
+            MessageBox.Show(inventory.AllParts.Count.ToString()); //prints number of objects in AllParts Bindinglist to Messagebox
         }
 
-        //first checks if something is selected, if nothing slected a message box will appear prompting the user
-        //if a row is selected then the selection will be deleted.
+        //button used to delete selected part
         public void partsDeleteButton_Click(object sender, EventArgs e)
         {
-            Inventory inventory = new Inventory();
-
-            if (!partsDataGridView.CurrentRow.Selected)
+            if (partsDataGridView.CurrentRow == null || !partsDataGridView.CurrentRow.Selected) //checks if the current row is empty or if there is no selection
             {
                 MessageBox.Show("Nothing Selected!", "Please Make A Slection");
                 return;
             }
 
-            Part deletepart = partsDataGridView.CurrentRow.DataBoundItem as Part;
-            inventory.deletePart(deletepart);
+            Part deletepart = partsDataGridView.CurrentRow.DataBoundItem as Part; //storeing selection in Part veriable
+            inventory.deletePart(deletepart); //deleteing selecting from bindinglist
         }
 
+        /* ------- Work in Progress ------- */
         private void partsModifyButton_Click(object sender, EventArgs e)
         {
+            /*
             Inventory inventory = new Inventory();
             int x;
             Part newPart = new Part();
@@ -87,8 +82,8 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
             x = oldPart.PartID;
 
-            addPartScreen addPartScreen = new addPartScreen();
-            addPartScreen.ShowDialog();            
+            //modifyPartScreen modifyPartScreen = new modifyPartScreen();
+            //modifyPartScreen.ShowDialog();            
             
             int PartID = oldPart.PartID;
             string Name = oldPart.Name;
@@ -97,7 +92,6 @@ namespace MatthewEvans___BFM1___Software_I___C968
             int Min = oldPart.Min;
             int Max = oldPart.Max;
 
-            /*
             int MachineID = oldPart.;
             string CompanyName;
 
@@ -117,12 +111,35 @@ namespace MatthewEvans___BFM1___Software_I___C968
             */
         }
 
+        //takes input from search text box and returns a message if found or not
         private void partsSearchButton_Click(object sender, EventArgs e)
         {
-            Inventory inventory = new Inventory();
-
+            if (inventory.lookupPart(Int32.Parse(partsSearchValue.Text)) == null)
+            {
+                MessageBox.Show($"PartID: {Int32.Parse(partsSearchValue.Text)} was not found.");
+                return;
+            }
             Part partlookup = inventory.lookupPart(Int32.Parse(partsSearchValue.Text));
-            MessageBox.Show("Part " + partlookup.Name + " with PartID: " + partlookup.PartID + " was found.");
+            MessageBox.Show($"Part { partlookup.Name } with PartID: { partlookup.PartID } was found.");
+        }
+        
+        private void MainScreenSetup()
+        {
+            //set data source for Parts datagrid
+            partsDataGridView.DataSource = inventory.AllParts;
+            productsDataGridView.DataSource = inventory.Products;
+
+            //Remove bottom row from datagrids
+            partsDataGridView.AllowUserToAddRows = false;
+            productsDataGridView.AllowUserToAddRows = false;
+        }
+
+        private void SetupSampelData()
+        {
+            inventory.addPart(new Inhouse { PartID = 1, Name = "Georgie", Price = 1.00m, InStock = 1, Min = 1, Max = 1, MachineID = 8675309 });
+            inventory.addPart(new Inhouse { PartID = 2, Name = "Sean", Price = 10.00m, InStock = 5, Min = 0, Max = 10, MachineID = 8675309 });
+            inventory.addPart(new Inhouse { PartID = 3, Name = "Justin", Price = 0.50m, InStock = 100, Min = 100, Max = 99, MachineID = 8675309 });
+            inventory.addPart(new Inhouse { PartID = 4, Name = "Ookami", Price = 1000.00m, InStock = 0, Min = 1, Max = 9999, MachineID = 8675309 });
         }
     }
 }

@@ -12,9 +12,14 @@ namespace MatthewEvans___BFM1___Software_I___C968
 {
     public partial class addPartScreen : Form
     {
+        //initialization of Inventory class
+        Inventory inventory = new Inventory();
+
         public addPartScreen()
         {
             InitializeComponent();
+
+            DefualtInput();
         }
 
         private void inhouseRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -42,64 +47,45 @@ namespace MatthewEvans___BFM1___Software_I___C968
             this.Close();
         }
 
-
-
         private void saveButton_Click(object sender, EventArgs e)
-        {
-            /*
-             int PartID;
-             string Name;
-             decimal Price;
-             int InStock;
-             int Min;
-             int Max;
+        {         
+            if(inhouseRadioButton.Checked == true)
+            {
+                Inhouse inhouse = new Inhouse
+                {
+                    PartID = int.Parse(idValue.Text),
+                    Name = nameValue.Text,
+                    Price = decimal.Parse(priceCostValue.Text),
+                    InStock = Int32.Parse(inventoryValue.Text),
+                    Min = Int32.Parse(minValue.Text),
+                    Max = Int32.Parse(maxValue.Text),
+                    MachineID = Int32.Parse(machineIDValue.Text)
+                };
 
-             int MachineID;
-             string CompanyName;
+                inventory.addPart(inhouse);
+            }
+            else
+            {
+                //test code to help confirm radial button selection (if statment above) are working properly
+                MessageBox.Show("Outsourced");
+                /*
+                outsourced.PartID = Int32.Parse(idValue.Text);
+                outsourced.Name = nameValue.Text;
+                outsourced.InStock = Int32.Parse(inventoryValue.Text);
+                outsourced.Min = Int32.Parse(minValue.Text);
+                outsourced.Max = Int32.Parse(maxValue.Text);
+                outsourced.CompanyName = companyNameValue.Text;
 
-
-             PartID = 1; //Int32.Parse(idValue.Text);
-             Name = "Steven"; //nameValue.Text;
-             Price = 1.00m; //Decimal.Parse(priceCostValue.Text);
-             InStock = 1;  //Int32.Parse(inventoryValue.Text);
-             Min = 1;  //Int32.Parse(minValue.Text);
-             Max = 1; //Int32.Parse(maxValue.Text);
-             MachineID = 1; //Int32.Parse(machineIDValue.Text);
-             CompanyName = "Steven and Sons"; //companyNameValue.Text;
-
-             Inventory.Add(PartID, Name, Price, InStock, Min, Max);
-             */
-
-             this.Close();
-        }
-
-        private void saveButton_Click_1(object sender, EventArgs e)
-        {
-            Inventory inventory = new Inventory();
-
-            int PartID;
-            string Name;
-            decimal Price;
-            int InStock;
-            int Min;
-            int Max;
-
-            int MachineID;
-            string CompanyName;
-
-
-            PartID = Int32.Parse(idValue.Text);
-            Name = nameValue.Text;
-            Price = Decimal.Parse(priceCostValue.Text);
-            InStock = Int32.Parse(inventoryValue.Text);
-            Min = Int32.Parse(minValue.Text);
-            Max = Int32.Parse(maxValue.Text);
-            MachineID = Int32.Parse(machineIDValue.Text);
-            CompanyName = companyNameValue.Text;
-
-            inventory.addPart(PartID, Name, Price, InStock, Min, Max);
+                inventory.addPart(outsourced);
+                */
+            }   
 
             this.Close();
+        }
+
+        private void DefualtInput()
+        {
+            idValue.Text = "defualt text";
         }
     }
     }

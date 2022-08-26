@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace MatthewEvans___BFM1___Software_I___C968
 {
-    public class Inventory : Part
+    public class Inventory
     {
-        public static BindingList<Product> Products = new BindingList<Product>();
-        public static BindingList<Part> AllParts = new BindingList<Part>();
+        public BindingList<Product> Products = new BindingList<Product>();
+        public BindingList<Part> AllParts = new BindingList<Part>();
 
         Product myProduct = new Product();
 
@@ -77,9 +77,9 @@ namespace MatthewEvans___BFM1___Software_I___C968
         /// Represents a function that adds a Part to the All Parts list.
         /// </summary>
         /// <param name=""> Represents a part to be addded to the All Parts list. </param>
-        public void addPart(int PartID, string Name, decimal Price, int InStock, int Min, int Max)
+        public void addPart(Part myPart)
         {
-            AllParts.Add(new Part { PartID = PartID, Name = Name, Price = Price, InStock = InStock, Min = Min, Max = Max } );
+            AllParts.Add(myPart);
         }
 
         /// <summary>
@@ -91,6 +91,18 @@ namespace MatthewEvans___BFM1___Software_I___C968
         /// <returns> Returns true if part is deleted, else returns false. </returns>
         public bool deletePart(Part myPart)
         {
+            foreach(var part in AllParts)
+            {
+                if (part != myPart)
+                {
+                    continue;
+                }
+                AllParts.Remove(part);
+                return true;
+            }
+            return false ;
+            
+            /*
             for (int i = 0 ; i < AllParts.Count ; i++)
             {
                 if (myPart != AllParts[i])
@@ -102,6 +114,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
             }
             return false;
+            */
         }
 
         /// <summary>
@@ -130,7 +143,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
         {
             for (int i = 0 ; i < AllParts.Count ; i++)
             {
-                if (x == PartID)
+                if (x == myPart.PartID)
                 {
                     AllParts.RemoveAt(x);
                     AllParts.Add(myPart);
