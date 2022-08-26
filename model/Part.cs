@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MatthewEvans___BFM1___Software_I___C968
 {
-    public abstract class Part
+    public class Part
     {
         public int PartID { get; set; }
         public string Name { get; set; }

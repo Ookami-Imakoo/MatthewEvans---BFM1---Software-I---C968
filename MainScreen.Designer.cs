@@ -68,6 +68,7 @@
             this.partsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.partsDataGridView.Size = new System.Drawing.Size(622, 319);
             this.partsDataGridView.TabIndex = 1;
+            this.partsDataGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.partsDataGridView_DataBindingComplete);
             // 
             // partsSearchButton
             // 
@@ -77,6 +78,7 @@
             this.partsSearchButton.TabIndex = 2;
             this.partsSearchButton.Text = "Search";
             this.partsSearchButton.UseVisualStyleBackColor = true;
+            this.partsSearchButton.Click += new System.EventHandler(this.partsSearchButton_Click);
             // 
             // partsSearchValue
             // 
@@ -113,6 +115,7 @@
             this.partsModifyButton.TabIndex = 6;
             this.partsModifyButton.Text = "Modify";
             this.partsModifyButton.UseVisualStyleBackColor = true;
+            this.partsModifyButton.Click += new System.EventHandler(this.partsModifyButton_Click);
             // 
             // partsDeleteButton
             // 
@@ -122,6 +125,7 @@
             this.partsDeleteButton.TabIndex = 7;
             this.partsDeleteButton.Text = "Delete";
             this.partsDeleteButton.UseVisualStyleBackColor = true;
+            this.partsDeleteButton.Click += new System.EventHandler(this.partsDeleteButton_Click);
             // 
             // productsDeleteButton
             // 

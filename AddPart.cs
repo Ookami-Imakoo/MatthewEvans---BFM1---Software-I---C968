@@ -75,6 +75,8 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         private void saveButton_Click_1(object sender, EventArgs e)
         {
+            Inventory inventory = new Inventory();
+
             int PartID;
             string Name;
             decimal Price;
@@ -95,7 +97,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
             MachineID = Int32.Parse(machineIDValue.Text);
             CompanyName = companyNameValue.Text;
 
-            Inventory.addPart(PartID, Name, Price, InStock, Min, Max);
+            inventory.addPart(PartID, Name, Price, InStock, Min, Max);
 
             this.Close();
         }

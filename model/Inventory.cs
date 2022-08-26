@@ -77,9 +77,9 @@ namespace MatthewEvans___BFM1___Software_I___C968
         /// Represents a function that adds a Part to the All Parts list.
         /// </summary>
         /// <param name=""> Represents a part to be addded to the All Parts list. </param>
-        public static void addPart(int PartID, string Name, decimal Price, int InStock, int Min, int Max)
+        public void addPart(int PartID, string Name, decimal Price, int InStock, int Min, int Max)
         {
-            AllParts.AddNew();
+            AllParts.Add(new Part { PartID = PartID, Name = Name, Price = Price, InStock = InStock, Min = Min, Max = Max } );
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
         {
             for (int i = 0; i < AllParts.Count; i++)
             {
-                if (x == PartID)
+                if (x == AllParts[i].PartID)
                 {
                     return AllParts[i];
                 }
