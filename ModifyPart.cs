@@ -88,7 +88,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
                     Max = Int32.Parse(maxValue.Text),
                     MachineID = Int32.Parse(machineIDValue.Text)
                 };
-
+                
                 for (int i = 0; i < Inventory.AllParts.Count; i++)
                 {
                     if (Inventory.AllParts[i].PartID == inhouse.PartID)
@@ -101,17 +101,38 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
                 }
             }
+
+            else
+            {
+                Outsourced outsourced = new Outsourced
+                {
+                    PartID = int.Parse(idValue.Text),
+                    Name = nameValue.Text,
+                    Price = decimal.Parse(priceCostValue.Text),
+                    InStock = Int32.Parse(inventoryValue.Text),
+                    Min = Int32.Parse(minValue.Text),
+                    Max = Int32.Parse(maxValue.Text),
+                    CompanyName = companyNameValue.Text
+                };
+
+                for (int i = 0; i < Inventory.AllParts.Count; i++)
+                {
+                    if (Inventory.AllParts[i].PartID == outsourced.PartID)
+                    {
+                        inventory.deletePart(Inventory.AllParts[i]);
+                        inventory.addPart(outsourced);
+                        this.Close();
+
+                    }
+
+                }
+            }
         }
 
         //closes Modify Part screen
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void checkForDuplicates()
-        {
-            
         }
     }
 }
