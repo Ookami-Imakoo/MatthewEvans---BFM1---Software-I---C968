@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,6 +14,8 @@ namespace MatthewEvans___BFM1___Software_I___C968
 {
     public partial class ModifyPart : Form
     {
+        Inventory inventory =  new Inventory();
+
         public ModifyPart()
         {
             InitializeComponent();
@@ -69,6 +72,46 @@ namespace MatthewEvans___BFM1___Software_I___C968
             modifyPart.companyNameValue.Text = myOutsourced.CompanyName.ToString();
 
             modifyPart.Show();
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            if (inhouseRadioButton.Checked == true)
+            {
+                Inhouse inhouse = new Inhouse
+                {
+                    PartID = int.Parse(idValue.Text),
+                    Name = nameValue.Text,
+                    Price = decimal.Parse(priceCostValue.Text),
+                    InStock = Int32.Parse(inventoryValue.Text),
+                    Min = Int32.Parse(minValue.Text),
+                    Max = Int32.Parse(maxValue.Text),
+                    MachineID = Int32.Parse(machineIDValue.Text)
+                };
+
+                for (int i = 0; i < Inventory.AllParts.Count; i++)
+                {
+                    if (Inventory.AllParts[i].PartID == inhouse.PartID)
+                    {
+                        inventory.deletePart(Inventory.AllParts[i]);
+                        inventory.addPart(inhouse);
+                        this.Close();
+
+                    }
+
+                }
+            }
+        }
+
+        //closes Modify Part screen
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void checkForDuplicates()
+        {
+            
         }
     }
 }

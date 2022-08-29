@@ -41,11 +41,6 @@ namespace MatthewEvans___BFM1___Software_I___C968
             companyNameValue.Show();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void saveButton_Click(object sender, EventArgs e)
         {
             if (inhouseRadioButton.Checked == true)
@@ -79,6 +74,12 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
                 inventory.addPart(outsourced);                
             }   
+            this.Close();
+        }
+
+        //closes Add Part screen
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }
