@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MatthewEvans___BFM1___Software_I___C968
+namespace MatthewEvans___BFM1___Software_I___C968.model
 {
     public class Product
     {

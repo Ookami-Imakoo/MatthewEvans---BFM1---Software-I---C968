@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MatthewEvans___BFM1___Software_I___C968.model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
 {
     public partial class addPartScreen : Form
     {
-        //initialization of Inventory class
         Inventory inventory = new Inventory();
-
         public addPartScreen()
         {
             InitializeComponent();
@@ -48,8 +47,8 @@ namespace MatthewEvans___BFM1___Software_I___C968
         }
 
         private void saveButton_Click(object sender, EventArgs e)
-        {         
-            if(inhouseRadioButton.Checked == true)
+        {
+            if (inhouseRadioButton.Checked == true)
             {
                 Inhouse inhouse = new Inhouse
                 {
@@ -63,21 +62,22 @@ namespace MatthewEvans___BFM1___Software_I___C968
                 };
 
                 inventory.addPart(inhouse);
+                
             }
             else
             {
-                //test code to help confirm radial button selection (if statment above) are working properly
-                MessageBox.Show("Outsourced");
-                /*
-                outsourced.PartID = Int32.Parse(idValue.Text);
-                outsourced.Name = nameValue.Text;
-                outsourced.InStock = Int32.Parse(inventoryValue.Text);
-                outsourced.Min = Int32.Parse(minValue.Text);
-                outsourced.Max = Int32.Parse(maxValue.Text);
-                outsourced.CompanyName = companyNameValue.Text;
+                Outsourced outsourced = new Outsourced
+                {
+                    PartID = int.Parse(idValue.Text),
+                    Name = nameValue.Text,
+                    Price = decimal.Parse(priceCostValue.Text),
+                    InStock = Int32.Parse(inventoryValue.Text),
+                    Min = Int32.Parse(minValue.Text),
+                    Max = Int32.Parse(maxValue.Text),
+                    CompanyName = companyNameValue.Text
+                };
 
-                inventory.addPart(outsourced);
-                */
+                inventory.addPart(outsourced);                
             }   
 
             this.Close();

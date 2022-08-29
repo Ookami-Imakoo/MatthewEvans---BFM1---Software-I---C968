@@ -1,10 +1,12 @@
-﻿using System;
+﻿using MatthewEvans___BFM1___Software_I___C968.model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +18,9 @@ namespace MatthewEvans___BFM1___Software_I___C968
         //Initialize Inventory
         Inventory inventory = new Inventory();
 
+        //used to store selected part form list and use in various methods in functions
+        Inhouse selectedPart;
+
         public mainScreen()
         {
             InitializeComponent();
@@ -24,8 +29,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
             MainScreenSetup();
 
             //sets up sampel data for debug
-            SetupSampelData();
-
+            //SetupSampelData();
         }
 
         //clears the autoselection of rows
@@ -51,10 +55,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
         //closes application
         private void exitButton_Click(object sender, EventArgs e)
         {
-            //this.Close();
-
-            //test code for figureing out why child objects added to Allparts list not showing up in list properly
-            MessageBox.Show(inventory.AllParts.Count.ToString()); //prints number of objects in AllParts Bindinglist to Messagebox
+            this.Close();
         }
 
         //button used to delete selected part
@@ -70,45 +71,18 @@ namespace MatthewEvans___BFM1___Software_I___C968
             inventory.deletePart(deletepart); //deleteing selecting from bindinglist
         }
 
-        /* ------- Work in Progress ------- */
+        //opens and populates modify parts screen
         private void partsModifyButton_Click(object sender, EventArgs e)
         {
-            /*
-            Inventory inventory = new Inventory();
-            int x;
-            Part newPart = new Part();
+            selectedPart = partsDataGridView.CurrentRow.DataBoundItem as Inhouse; //stores selection in Part object
 
-            Part oldPart = partsDataGridView.CurrentRow.DataBoundItem as Part;
+            //MessageBox.Show($"Part ID: {selectedPart.PartID} was selected"); // Used for debugging selected item code above
 
-            x = oldPart.PartID;
+            ModifyPart modifyPart = new ModifyPart(selectedPart);
 
-            //modifyPartScreen modifyPartScreen = new modifyPartScreen();
-            //modifyPartScreen.ShowDialog();            
-            
-            int PartID = oldPart.PartID;
-            string Name = oldPart.Name;
-            decimal Price = oldPart.Price;
-            int InStock = oldPart.InStock;
-            int Min = oldPart.Min;
-            int Max = oldPart.Max;
 
-            int MachineID = oldPart.;
-            string CompanyName;
 
-            
-            PartID = Int32.Parse(idValue.Text);
-            Name = nameValue.Text;
-            Price = Decimal.Parse(priceCostValue.Text);
-            InStock = Int32.Parse(inventoryValue.Text);
-            Min = Int32.Parse(minValue.Text);
-            Max = Int32.Parse(maxValue.Text);
-            MachineID = Int32.Parse(machineIDValue.Text);
-            CompanyName = companyNameValue.Text;
-
-            inventory.addPart(PartID, Name, Price, InStock, Min, Max);
-
-            inventory.updatePart(x, newPart);
-            */
+            //modifyPart.Show(); //displays modify parts page
         }
 
         //takes input from search text box and returns a message if found or not
@@ -126,8 +100,8 @@ namespace MatthewEvans___BFM1___Software_I___C968
         private void MainScreenSetup()
         {
             //set data source for Parts datagrid
-            partsDataGridView.DataSource = inventory.AllParts;
-            productsDataGridView.DataSource = inventory.Products;
+            partsDataGridView.DataSource = Inventory.AllParts;
+            productsDataGridView.DataSource = Inventory.Products;
 
             //Remove bottom row from datagrids
             partsDataGridView.AllowUserToAddRows = false;
