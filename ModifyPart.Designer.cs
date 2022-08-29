@@ -47,6 +47,8 @@
             this.outsourcedRadioButton = new System.Windows.Forms.RadioButton();
             this.inhouseRadioButton = new System.Windows.Forms.RadioButton();
             this.modifyPartLabel = new System.Windows.Forms.Label();
+            this.companyNameValue = new System.Windows.Forms.TextBox();
+            this.companyNameLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -211,12 +213,30 @@
             this.modifyPartLabel.TabIndex = 19;
             this.modifyPartLabel.Text = "Modify Part";
             // 
+            // companyNameValue
+            // 
+            this.companyNameValue.Location = new System.Drawing.Point(205, 392);
+            this.companyNameValue.Name = "companyNameValue";
+            this.companyNameValue.Size = new System.Drawing.Size(180, 35);
+            this.companyNameValue.TabIndex = 39;
+            // 
+            // companyNameLabel
+            // 
+            this.companyNameLabel.AutoSize = true;
+            this.companyNameLabel.Location = new System.Drawing.Point(36, 395);
+            this.companyNameLabel.Name = "companyNameLabel";
+            this.companyNameLabel.Size = new System.Drawing.Size(163, 30);
+            this.companyNameLabel.TabIndex = 38;
+            this.companyNameLabel.Text = "Company Name";
+            // 
             // ModifyPart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(558, 544);
+            this.Controls.Add(this.companyNameValue);
+            this.Controls.Add(this.companyNameLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.minValue);
@@ -266,5 +286,7 @@
         private System.Windows.Forms.RadioButton outsourcedRadioButton;
         private System.Windows.Forms.RadioButton inhouseRadioButton;
         private System.Windows.Forms.Label modifyPartLabel;
+        private System.Windows.Forms.TextBox companyNameValue;
+        private System.Windows.Forms.Label companyNameLabel;
     }
 }

@@ -79,7 +79,6 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
                 inventory.addPart(outsourced);                
             }   
-
             this.Close();
         }
 

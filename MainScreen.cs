@@ -18,9 +18,6 @@ namespace MatthewEvans___BFM1___Software_I___C968
         //Initialize Inventory
         Inventory inventory = new Inventory();
 
-        //used to store selected part form list and use in various methods in functions
-        Inhouse selectedPart;
-
         public mainScreen()
         {
             InitializeComponent();
@@ -74,15 +71,19 @@ namespace MatthewEvans___BFM1___Software_I___C968
         //opens and populates modify parts screen
         private void partsModifyButton_Click(object sender, EventArgs e)
         {
-            selectedPart = partsDataGridView.CurrentRow.DataBoundItem as Inhouse; //stores selection in Part object
+           if(partsDataGridView.CurrentRow.DataBoundItem is Inhouse)
+           {
+               Inhouse selectedInhouse = partsDataGridView.CurrentRow.DataBoundItem as Inhouse; //stores selection in Inhouse object
+               ModifyPart modifyPart = new ModifyPart(selectedInhouse);
+           }
+           else
+           {
+               Outsourced selectedInhouse = partsDataGridView.CurrentRow.DataBoundItem as Outsourced; //stores selection in Outsourced object
+               ModifyPart modifyPart = new ModifyPart(selectedInhouse);
+           } 
 
-            //MessageBox.Show($"Part ID: {selectedPart.PartID} was selected"); // Used for debugging selected item code above
+            
 
-            ModifyPart modifyPart = new ModifyPart(selectedPart);
-
-
-
-            //modifyPart.Show(); //displays modify parts page
         }
 
         //takes input from search text box and returns a message if found or not
