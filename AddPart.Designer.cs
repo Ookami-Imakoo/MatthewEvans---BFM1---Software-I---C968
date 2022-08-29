@@ -96,6 +96,9 @@
             // 
             // idValue
             // 
+            this.idValue.Enabled = false;
+            this.idValue.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.idValue.HideSelection = false;
             this.idValue.Location = new System.Drawing.Point(205, 67);
             this.idValue.Name = "idValue";
             this.idValue.Size = new System.Drawing.Size(180, 35);

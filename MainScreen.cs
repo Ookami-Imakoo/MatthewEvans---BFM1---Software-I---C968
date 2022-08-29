@@ -32,7 +32,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
         //clears the autoselection of rows
         private void partsDataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-           partsDataGridView.ClearSelection();
+            partsDataGridView.ClearSelection();
         }
 
         //opens the add parts screen

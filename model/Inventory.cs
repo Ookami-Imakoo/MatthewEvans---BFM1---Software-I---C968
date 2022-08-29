@@ -150,5 +150,10 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
                 }
             }
         }
+
+        public int partIDGenerator()
+        {
+            return AllParts.Count + 00001;
+        }
     }
 }

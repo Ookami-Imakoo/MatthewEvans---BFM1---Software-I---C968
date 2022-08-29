@@ -18,7 +18,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
         {
             InitializeComponent();
 
-            DefualtInput();
+            idValue.Text = inventory.partIDGenerator().ToString();
         }
 
         private void inhouseRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -80,11 +80,6 @@ namespace MatthewEvans___BFM1___Software_I___C968
                 inventory.addPart(outsourced);                
             }   
             this.Close();
-        }
-
-        private void DefualtInput()
-        {
-            idValue.Text = "defualt text";
         }
     }
     }
