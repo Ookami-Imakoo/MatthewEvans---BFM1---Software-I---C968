@@ -32,13 +32,34 @@ namespace MatthewEvans___BFM1___Software_I___C968
         {
             Product product = new Product
             {
-                ProductID = 1, Name = nameValue.Text, 
-                InStock = int.Parse(inventoryValue.Text), Price = decimal.Parse(priceCostValue.Text), 
-                Max = int.Parse(maxValue.Text), Min = int.Parse(minValue.Text), AssociatredParts = myProduct.AssociatredParts
+                ProductID = 1,
+                Name = nameValue.Text,
+                InStock = int.Parse(inventoryValue.Text),
+                Price = decimal.Parse(priceCostValue.Text),
+                Max = int.Parse(maxValue.Text),
+                Min = int.Parse(minValue.Text),
+                AssociatredParts = myProduct.AssociatredParts
             };
 
-            inventory.addProduct(product);
-            this.Close();
+            //invetoryLogicSwitch(product);
+
+            if (inventoryLogic(product) == 1)
+            {
+                inventory.addProduct(product);
+                this.Close();
+            }
+            else if (inventoryLogic(product) == 2)
+            {
+                MessageBox.Show("Inventory Below Min Values");
+            }
+            else if (inventoryLogic(product) == 3)
+            {
+                MessageBox.Show("Inventory Above Max Values");
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         //adds Part to AssociatedParts list
@@ -77,6 +98,48 @@ namespace MatthewEvans___BFM1___Software_I___C968
         {
             partsAssociatedDataGridView.ClearSelection();
         }
+
+        //private bool inventoryMinMax(Product product)
+        //{
+        //    int inventoryAmount = int.Parse(inventoryValue.Text);
+        //    int maxAmount = int.Parse(maxValue.Text);
+        //    int minAmount = int.Parse(minValue.Text);
+
+        //    if (inventoryAmount <= maxAmount && inventoryAmount >= minAmount)
+        //    {
+        //        return true;
+        //    }
+        //    return false;
+        //}
+
+        private int inventoryLogic(Product product)
+        {
+            if (product.InStock <= product.Max && product.InStock >= product.Min)
+            {
+                return 1;
+            }
+            else if (product.InStock < product.Min)
+            {
+                return 2;
+            }
+            else if (product.InStock > product.Max)
+            {
+                return 3;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        //private void InvetoryLogicSwitch(Product product)
+        //{
+        //    switch (product)
+        //    {
+        //        case product.InStock <= product.Max:
+        //    }
+        //}
+
 
         //closes add product screen
         private void productCancelButton_Click(object sender, EventArgs e)
