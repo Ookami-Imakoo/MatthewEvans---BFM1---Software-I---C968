@@ -19,7 +19,7 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
 
         public BindingList<Part> AssociatredParts { get; set; }
 
-        public static BindingList<Part> AssociatedParts = new BindingList<Part>();
+        public BindingList<Part> AssociatedParts = new BindingList<Part>();
 
         public void addAssociatedPart(Part part)
         {

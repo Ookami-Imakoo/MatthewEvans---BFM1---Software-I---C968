@@ -24,21 +24,20 @@ namespace MatthewEvans___BFM1___Software_I___C968
             //sets up screen
             addProductSetup();
 
-
+            idValue.Text = inventory.productIDGenerator().ToString();
         }
 
         //created a product adding it to the 
         private void productSaveButton_Click(object sender, EventArgs e)
         {
-            Product myProduct = new Product
+            Product product = new Product
             {
-                ProductID = int.Parse(idValue.Text), Name = nameValue.Text, 
+                ProductID = 1, Name = nameValue.Text, 
                 InStock = int.Parse(inventoryValue.Text), Price = decimal.Parse(priceCostValue.Text), 
-                Max = int.Parse(maxValue.Text), Min = int.Parse(minValue.Text), AssociatredParts = Product.AssociatedParts
+                Max = int.Parse(maxValue.Text), Min = int.Parse(minValue.Text), AssociatredParts = myProduct.AssociatredParts
             };
 
-            inventory.addProduct(myProduct);
-
+            inventory.addProduct(product);
             this.Close();
         }
 
@@ -46,14 +45,14 @@ namespace MatthewEvans___BFM1___Software_I___C968
         private void allCandidateAddButton_Click(object sender, EventArgs e)
         {
             Part part = allCandidateDataGridView.CurrentRow.DataBoundItem as Part; //uses selection to create part object 
-            Product.AssociatedParts.Add(part); //adds part object to Associated Parts List
+            myProduct.AssociatedParts.Add(part); //adds part object to Associated Parts List
         }
 
         //Form settings
         private void addProductSetup()
         {
             allCandidateDataGridView.DataSource = Inventory.AllParts; //sets data for All Candidate Parts DataGrid
-            partsAssociatedDataGridView.DataSource = Product.AssociatedParts; //sets data for Parts Associated DataGrid
+            partsAssociatedDataGridView.DataSource = myProduct.AssociatedParts; //sets data for Parts Associated DataGrid
 
             
         }

@@ -49,8 +49,8 @@
             this.inventoryLabel = new System.Windows.Forms.Label();
             this.nameValue = new System.Windows.Forms.TextBox();
             this.nameLabel = new System.Windows.Forms.Label();
-            this.idValue = new System.Windows.Forms.TextBox();
             this.idLabel = new System.Windows.Forms.Label();
+            this.idValue = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.allCandidateDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partsAssociatedDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -246,13 +246,6 @@
             this.nameLabel.TabIndex = 38;
             this.nameLabel.Text = "Name";
             // 
-            // idValue
-            // 
-            this.idValue.Location = new System.Drawing.Point(197, 256);
-            this.idValue.Name = "idValue";
-            this.idValue.Size = new System.Drawing.Size(180, 35);
-            this.idValue.TabIndex = 37;
-            // 
             // idLabel
             // 
             this.idLabel.AutoSize = true;
@@ -262,12 +255,23 @@
             this.idLabel.TabIndex = 36;
             this.idLabel.Text = "ID";
             // 
+            // idValue
+            // 
+            this.idValue.Enabled = false;
+            this.idValue.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.idValue.HideSelection = false;
+            this.idValue.Location = new System.Drawing.Point(197, 256);
+            this.idValue.Name = "idValue";
+            this.idValue.Size = new System.Drawing.Size(180, 35);
+            this.idValue.TabIndex = 48;
+            // 
             // AddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1515, 928);
+            this.Controls.Add(this.idValue);
             this.Controls.Add(this.minValue);
             this.Controls.Add(this.minLabel);
             this.Controls.Add(this.maxValue);
@@ -278,7 +282,6 @@
             this.Controls.Add(this.inventoryLabel);
             this.Controls.Add(this.nameValue);
             this.Controls.Add(this.nameLabel);
-            this.Controls.Add(this.idValue);
             this.Controls.Add(this.idLabel);
             this.Controls.Add(this.productCancelButton);
             this.Controls.Add(this.productSaveButton);
@@ -325,7 +328,7 @@
         private System.Windows.Forms.Label inventoryLabel;
         private System.Windows.Forms.TextBox nameValue;
         private System.Windows.Forms.Label nameLabel;
-        private System.Windows.Forms.TextBox idValue;
         private System.Windows.Forms.Label idLabel;
+        private System.Windows.Forms.TextBox idValue;
     }
 }

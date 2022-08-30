@@ -154,5 +154,10 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
         {
             return AllParts.Count + 00001;
         }
+
+        public int productIDGenerator()
+        {
+            return Products.Count + 00001;
+        }
     }
 }

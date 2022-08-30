@@ -100,6 +100,18 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         }
 
+        //opens and populates modify products screen
+        private void productsModifyButton_Click(object sender, EventArgs e)
+        {
+            if (productsDataGridView.CurrentRow == null || !productsDataGridView.CurrentRow.Selected)
+            {
+                MessageBox.Show("Nothing Selected!", "Please Make A Selection");
+                return;
+            }
+            Product selectedProduct = productsDataGridView.CurrentRow.DataBoundItem as Product;
+            ModifyProduct modifyProduct = new ModifyProduct(selectedProduct);
+        }
+
         //takes input from search text box and returns a message if found or not
         private void partsSearchButton_Click(object sender, EventArgs e)
         {
