@@ -31,7 +31,7 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
         {
            for(int i = 0; i < AssociatedParts.Count; i++)
             {
-                if (x == ProductID)
+                if (x == AssociatedParts[i].PartID)
                 {
                     AssociatedParts.RemoveAt(i);
                 return true;

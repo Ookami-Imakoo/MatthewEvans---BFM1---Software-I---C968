@@ -122,6 +122,7 @@
             this.partsAssociatedDeleteButton.TabIndex = 17;
             this.partsAssociatedDeleteButton.Text = "Delete";
             this.partsAssociatedDeleteButton.UseVisualStyleBackColor = true;
+            this.partsAssociatedDeleteButton.Click += new System.EventHandler(this.partsAssociatedDeleteButton_Click);
             // 
             // partsAssociatedLabel
             // 
@@ -135,11 +136,15 @@
             // 
             // partsAssociatedDataGridView
             // 
+            this.partsAssociatedDataGridView.AllowUserToAddRows = false;
             this.partsAssociatedDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.partsAssociatedDataGridView.Location = new System.Drawing.Point(710, 512);
             this.partsAssociatedDataGridView.Name = "partsAssociatedDataGridView";
+            this.partsAssociatedDataGridView.ReadOnly = true;
+            this.partsAssociatedDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.partsAssociatedDataGridView.Size = new System.Drawing.Size(720, 251);
             this.partsAssociatedDataGridView.TabIndex = 13;
+            this.partsAssociatedDataGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.partsAssociatedDataGridView_DataBindingComplete);
             // 
             // productCancelButton
             // 
