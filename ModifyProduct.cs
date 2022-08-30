@@ -21,7 +21,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         public ModifyProduct(Product product)
         {
-            ModifyProduct modifyProduct = new ModifyProduct();
+            ModifyProduct modifyProduct = new ModifyProduct(product);
 
             modifyProduct.idValue.Text = product.ProductID.ToString();
             modifyProduct.nameValue.Text = product.Name.ToString();
