@@ -20,7 +20,7 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
         /// <param name="Product"></param>
         public void addProduct(Product Product)
         {
-            Products.AddNew();
+            Products.Add(Product);
         }
 
         /// <summary>

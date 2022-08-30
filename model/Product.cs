@@ -17,11 +17,13 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
         public int Min { get; set; }
         public int Max { get; set; }
 
+        public BindingList<Part> AssociatredParts { get; set; }
+
         public static BindingList<Part> AssociatedParts = new BindingList<Part>();
 
-        public void addAssociatedPart(int ProductID, string Name, decimal Price, int InStock, int Min, int Max)
+        public void addAssociatedPart(Part part)
         {
-            AssociatedParts.AddNew();
+            AssociatedParts.Add(part);
 
         }
 

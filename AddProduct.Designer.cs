@@ -73,6 +73,7 @@
             this.allCandidateAddButton.TabIndex = 12;
             this.allCandidateAddButton.Text = "Add";
             this.allCandidateAddButton.UseVisualStyleBackColor = true;
+            this.allCandidateAddButton.Click += new System.EventHandler(this.allCandidateAddButton_Click);
             // 
             // allCandidatePartsLabel
             // 
@@ -102,11 +103,16 @@
             // 
             // allCandidateDataGridView
             // 
+            this.allCandidateDataGridView.AllowUserToAddRows = false;
             this.allCandidateDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.allCandidateDataGridView.Location = new System.Drawing.Point(710, 124);
+            this.allCandidateDataGridView.MultiSelect = false;
             this.allCandidateDataGridView.Name = "allCandidateDataGridView";
+            this.allCandidateDataGridView.ReadOnly = true;
+            this.allCandidateDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.allCandidateDataGridView.Size = new System.Drawing.Size(720, 251);
             this.allCandidateDataGridView.TabIndex = 8;
+            this.allCandidateDataGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.allCandidateDataGridView_DataBindingComplete);
             // 
             // partsAssociatedDeleteButton
             // 
@@ -153,6 +159,7 @@
             this.productSaveButton.TabIndex = 18;
             this.productSaveButton.Text = "Save";
             this.productSaveButton.UseVisualStyleBackColor = true;
+            this.productSaveButton.Click += new System.EventHandler(this.productSaveButton_Click);
             // 
             // minValue
             // 
