@@ -28,14 +28,13 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
         /// </summary>
         /// <param name="x"> Represents the product id to be deleted. </param>
         /// <returns> Returns true if the suplied product id is found, else returns false. </returns>
-        public bool removeProduct(int x)
+        public bool removeProduct(Product product)
         {
             for (int i = 0; i < Products.Count; i++)
             {
-                if (x == myProduct.ProductID)
+                if (product == Products[i])
                 {
-                    Products.RemoveAt(i);
-                    return true;
+                    Products.Remove(product);
                 }
             }
             return false;

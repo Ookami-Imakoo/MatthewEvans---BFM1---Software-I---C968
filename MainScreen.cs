@@ -68,6 +68,20 @@ namespace MatthewEvans___BFM1___Software_I___C968
             inventory.deletePart(deletepart); //deleteing selecting from bindinglist
         }
 
+        //button used to delete selected product
+        private void productsDeleteButton_Click(object sender, EventArgs e)
+        {
+            if(productsDataGridView.CurrentRow == null || !productsDataGridView.CurrentRow.Selected)
+            {
+                MessageBox.Show("Nothing Selected!", "Please Make A Selection");
+                return;
+            }
+
+            Product deleteproduct = productsDataGridView.CurrentRow.DataBoundItem as Product;
+            inventory.removeProduct(deleteproduct);
+
+        }
+
         //opens and populates modify parts screen
         private void partsModifyButton_Click(object sender, EventArgs e)
         {

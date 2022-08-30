@@ -33,14 +33,13 @@ namespace MatthewEvans___BFM1___Software_I___C968
             Product myProduct = new Product
             {
                 ProductID = int.Parse(idValue.Text), Name = nameValue.Text, 
-                InStock = int.Parse(inventoryValue.Text), Price = int.Parse(priceCostValue.Text), 
+                InStock = int.Parse(inventoryValue.Text), Price = decimal.Parse(priceCostValue.Text), 
                 Max = int.Parse(maxValue.Text), Min = int.Parse(minValue.Text), AssociatredParts = Product.AssociatedParts
             };
 
             inventory.addProduct(myProduct);
 
-            
-
+            this.Close();
         }
 
         //adds Part to AssociatedParts list
