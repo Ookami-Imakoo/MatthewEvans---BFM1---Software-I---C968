@@ -90,7 +90,7 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
         /// <returns> Returns true if part is deleted, else returns false. </returns>
         public bool deletePart(Part myPart)
         {
-            foreach(var part in AllParts)
+            foreach (var part in AllParts)
             {
                 if (part != myPart)
                 {
@@ -99,8 +99,8 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
                 AllParts.Remove(part);
                 return true;
             }
-            return false ;
-            
+            return false;
+
             /*
             for (int i = 0 ; i < AllParts.Count ; i++)
             {
@@ -140,7 +140,7 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
         /// <param name="myPart"> Represents the part to be placed in the list after the removal of the old data. </param>
         public void updatePart(int x, Part myPart)
         {
-            for (int i = 0 ; i < AllParts.Count ; i++)
+            for (int i = 0; i < AllParts.Count; i++)
             {
                 if (x == myPart.PartID)
                 {

@@ -56,8 +56,26 @@ namespace MatthewEvans___BFM1___Software_I___C968
                     MachineID = Int32.Parse(machineIDValue.Text)
                 };
 
-                inventory.addPart(inhouse);
-                
+                //invetoryLogicSwitch(inhouse);
+
+                if (inventoryLogic(inhouse) == 1)
+                {
+                    inventory.addPart(inhouse);
+                    this.Close();
+                }
+                else if (inventoryLogic(inhouse) == 2)
+                {
+                    MessageBox.Show("Inventory Below Min Values");
+                }
+                else if (inventoryLogic(inhouse) == 3)
+                {
+                    MessageBox.Show("Inventory Above Max Values");
+                }
+                else
+                {
+                    MessageBox.Show("Error");
+                }
+
             }
             else
             {
@@ -72,7 +90,25 @@ namespace MatthewEvans___BFM1___Software_I___C968
                     CompanyName = companyNameValue.Text
                 };
 
-                inventory.addPart(outsourced);                
+                //invetoryLogicSwitch(outsourced);
+
+                if (inventoryLogic(outsourced) == 1)
+                {
+                    inventory.addPart(outsourced);
+                    this.Close();
+                }
+                else if (inventoryLogic(outsourced) == 2)
+                {
+                    MessageBox.Show("Inventory Below Min Values");
+                }
+                else if (inventoryLogic(outsourced) == 3)
+                {
+                    MessageBox.Show("Inventory Above Max Values");
+                }
+                else
+                {
+                    MessageBox.Show("Error");
+                }
             }   
             this.Close();
         }
@@ -81,6 +117,26 @@ namespace MatthewEvans___BFM1___Software_I___C968
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private int inventoryLogic(Part part)
+        {
+            if (part.InStock <= part.Max && part.InStock >= part.Min)
+            {
+                return 1;
+            }
+            else if (part.InStock < part.Min)
+            {
+                return 2;
+            }
+            else if (part.InStock > part.Max)
+            {
+                return 3;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
     }

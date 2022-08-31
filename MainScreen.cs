@@ -51,7 +51,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         //closes application
         private void exitButton_Click(object sender, EventArgs e)
-        {
+    {
             this.Close();
         }
 

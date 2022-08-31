@@ -13,6 +13,8 @@ namespace MatthewEvans___BFM1___Software_I___C968
 {
     public partial class ModifyProduct : Form
     {
+        Inventory inventory = new Inventory();
+        Product myProduct = new Product();
 
         public ModifyProduct()
         {
@@ -21,7 +23,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         public ModifyProduct(Product product)
         {
-            ModifyProduct modifyProduct = new ModifyProduct(product);
+            ModifyProduct modifyProduct = new ModifyProduct();
 
             modifyProduct.idValue.Text = product.ProductID.ToString();
             modifyProduct.nameValue.Text = product.Name.ToString();
@@ -31,6 +33,51 @@ namespace MatthewEvans___BFM1___Software_I___C968
             modifyProduct.minValue.Text = product.Min.ToString();
 
             modifyProduct.partsAssociatedDataGridView.DataSource = product.AssociatredParts;
+
+            for (int i = 0; i < Inventory.Products.Count; i++)
+            {
+                if (Inventory.Products[i].ProductID == product.ProductID)
+                {
+                    inventory.removeProduct(Inventory.Products[i]);
+                    inventory.addProduct(product);
+                }
+
+            }
+
+            modifyProduct.Show();
+        }
+
+        //
+        private void productSaveButton_Click(object sender, EventArgs e)
+        {
+            Product product = new Product
+            {
+                ProductID = int.Parse(idValue.Text),
+                Name = nameValue.Text,
+                Price = decimal.Parse(priceCostValue.Text),
+                InStock = Int32.Parse(inventoryValue.Text),
+                Min = Int32.Parse(minValue.Text),
+                Max = Int32.Parse(maxValue.Text),
+                AssociatedParts = myProduct.AssociatedParts
+            };
+
+            for (int i = 0; i < Inventory.Products.Count; i++)
+            {
+                if (Inventory.Products[i].ProductID == product.ProductID)
+                {
+                    inventory.removeProduct(Inventory.Products[i]);
+                    inventory.addProduct(product);
+                    this.Close();
+
+                }
+
+            }
+        }
+
+        //
+        private void productCancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

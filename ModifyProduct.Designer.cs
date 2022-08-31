@@ -38,7 +38,6 @@
             this.inventoryLabel = new System.Windows.Forms.Label();
             this.nameValue = new System.Windows.Forms.TextBox();
             this.nameLabel = new System.Windows.Forms.Label();
-            this.idValue = new System.Windows.Forms.TextBox();
             this.idLabel = new System.Windows.Forms.Label();
             this.productCancelButton = new System.Windows.Forms.Button();
             this.productSaveButton = new System.Windows.Forms.Button();
@@ -51,6 +50,7 @@
             this.allCandidateSearchButton = new System.Windows.Forms.Button();
             this.allCandidateDataGridView = new System.Windows.Forms.DataGridView();
             this.modifyProductLabel = new System.Windows.Forms.Label();
+            this.idValue = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.partsAssociatedDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.allCandidateDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -135,13 +135,6 @@
             this.nameLabel.TabIndex = 61;
             this.nameLabel.Text = "Name";
             // 
-            // idValue
-            // 
-            this.idValue.Location = new System.Drawing.Point(197, 256);
-            this.idValue.Name = "idValue";
-            this.idValue.Size = new System.Drawing.Size(180, 35);
-            this.idValue.TabIndex = 60;
-            // 
             // idLabel
             // 
             this.idLabel.AutoSize = true;
@@ -159,6 +152,7 @@
             this.productCancelButton.TabIndex = 58;
             this.productCancelButton.Text = "Cancel";
             this.productCancelButton.UseVisualStyleBackColor = true;
+            this.productCancelButton.Click += new System.EventHandler(this.productCancelButton_Click);
             // 
             // productSaveButton
             // 
@@ -168,6 +162,7 @@
             this.productSaveButton.TabIndex = 57;
             this.productSaveButton.Text = "Save";
             this.productSaveButton.UseVisualStyleBackColor = true;
+            this.productSaveButton.Click += new System.EventHandler(this.productSaveButton_Click);
             // 
             // partsAssociatedDeleteButton
             // 
@@ -249,12 +244,23 @@
             this.modifyProductLabel.TabIndex = 48;
             this.modifyProductLabel.Text = "Modify Product";
             // 
+            // idValue
+            // 
+            this.idValue.Enabled = false;
+            this.idValue.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.idValue.HideSelection = false;
+            this.idValue.Location = new System.Drawing.Point(197, 256);
+            this.idValue.Name = "idValue";
+            this.idValue.Size = new System.Drawing.Size(180, 35);
+            this.idValue.TabIndex = 71;
+            // 
             // ModifyProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1515, 928);
+            this.Controls.Add(this.idValue);
             this.Controls.Add(this.minValue);
             this.Controls.Add(this.minLabel);
             this.Controls.Add(this.maxValue);
@@ -265,7 +271,6 @@
             this.Controls.Add(this.inventoryLabel);
             this.Controls.Add(this.nameValue);
             this.Controls.Add(this.nameLabel);
-            this.Controls.Add(this.idValue);
             this.Controls.Add(this.idLabel);
             this.Controls.Add(this.productCancelButton);
             this.Controls.Add(this.productSaveButton);
@@ -301,7 +306,6 @@
         private System.Windows.Forms.Label inventoryLabel;
         private System.Windows.Forms.TextBox nameValue;
         private System.Windows.Forms.Label nameLabel;
-        private System.Windows.Forms.TextBox idValue;
         private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.Button productCancelButton;
         private System.Windows.Forms.Button productSaveButton;
@@ -314,5 +318,6 @@
         private System.Windows.Forms.Button allCandidateSearchButton;
         private System.Windows.Forms.DataGridView allCandidateDataGridView;
         private System.Windows.Forms.Label modifyProductLabel;
+        private System.Windows.Forms.TextBox idValue;
     }
 }
