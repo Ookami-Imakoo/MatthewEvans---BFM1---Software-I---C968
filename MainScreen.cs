@@ -1,5 +1,6 @@
 ﻿using MatthewEvans___BFM1___Software_I___C968.model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,9 @@ namespace MatthewEvans___BFM1___Software_I___C968
         //Initialize Inventory
         Inventory inventory = new Inventory();
 
+        //Value used to setup data only once
+        int setupData = 0;
+
         public mainScreen()
         {
             InitializeComponent();
@@ -26,7 +30,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
             MainScreenSetup();
 
             //sets up sampel data for debug
-            //SetupSampelData();
+            SetupSampelData();
         }
 
         //clears the autoselection of rows
@@ -124,6 +128,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
             MessageBox.Show($"Part { partlookup.Name } with PartID: { partlookup.PartID } was found.");
         }
         
+        //Settings for main screen form
         private void MainScreenSetup()
         {
             //set data source for Parts datagrid
@@ -135,12 +140,28 @@ namespace MatthewEvans___BFM1___Software_I___C968
             productsDataGridView.AllowUserToAddRows = false;
         }
 
+        //Sample Data
         private void SetupSampelData()
         {
-            inventory.addPart(new Inhouse { PartID = 1, Name = "Georgie", Price = 1.00m, InStock = 1, Min = 1, Max = 1, MachineID = 8675309 });
-            inventory.addPart(new Inhouse { PartID = 2, Name = "Sean", Price = 10.00m, InStock = 5, Min = 0, Max = 10, MachineID = 8675309 });
-            inventory.addPart(new Inhouse { PartID = 3, Name = "Justin", Price = 0.50m, InStock = 100, Min = 100, Max = 99, MachineID = 8675309 });
-            inventory.addPart(new Inhouse { PartID = 4, Name = "Ookami", Price = 1000.00m, InStock = 0, Min = 1, Max = 9999, MachineID = 8675309 });
+            if (setupData < 1)
+            {
+                //Part Sample Data
+                inventory.addPart(new Inhouse { PartID = 1, Name = "Rear Weight Bracket", Price = 67.41m, InStock = 1, Min = 1, Max = 20, MachineID = 8675309 });
+                inventory.addPart(new Inhouse { PartID = 2, Name = "Magnetic Hitch Pin", Price = 18.99m, InStock = 5, Min = 1, Max = 10, MachineID = 8675309 });
+                inventory.addPart(new Inhouse { PartID = 3, Name = "Strorage Compartment Cover", Price = 7.46m, InStock = 10, Min = 10, Max = 99, MachineID = 8675309 });
+                inventory.addPart(new Inhouse { PartID = 4, Name = "3/4 in. Push-to-Connect Brass Ball Valve", Price = 26.97m, InStock = 22, Min = 5, Max = 100, MachineID = 8675309 });
+                inventory.addPart(new Inhouse { PartID = 5, Name = "1/2 in. x3/4 in. FIP x MHT Bras Flanged Sillcock Valve", Price = 7.78m, InStock = 11, Min = 5, Max = 100, MachineID = 8675309 });
+
+
+                //Product Sample Data
+                inventory.addProduct(new Product { ProductID = 1, Name = "Riding Lawnmower", InStock = 6, Min = 2, Max = 10, Price = 2299.00m });
+                inventory.addProduct(new Product { ProductID = 2, Name = "40 Gal. 36,000 BTU Tank Water Heater", InStock = 2, Min = 0, Max = 2, Price = 519.00m });
+                inventory.addProduct(new Product { ProductID = 3, Name = "Colorado 5-Light Black Modern Farmhouse Rectangular Chandelier", InStock = 0, Min = 0, Max = 5, Price = 353.00m });
+
+
+                setupData++;
+            }
+            
         }
     }
 }

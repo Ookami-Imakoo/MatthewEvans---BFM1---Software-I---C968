@@ -195,6 +195,7 @@
             this.outsourcedRadioButton.TabStop = true;
             this.outsourcedRadioButton.Text = "Outsourced";
             this.outsourcedRadioButton.UseVisualStyleBackColor = true;
+            this.outsourcedRadioButton.CheckedChanged += new System.EventHandler(this.outsourcedRadioButton_CheckedChanged_ModifyPart);
             // 
             // inhouseRadioButton
             // 
@@ -206,6 +207,7 @@
             this.inhouseRadioButton.TabStop = true;
             this.inhouseRadioButton.Text = "In-House";
             this.inhouseRadioButton.UseVisualStyleBackColor = true;
+            this.inhouseRadioButton.CheckedChanged += new System.EventHandler(this.inhouseRadioButton_CheckedChanged_ModifyPart);
             // 
             // modifyPartLabel
             // 
