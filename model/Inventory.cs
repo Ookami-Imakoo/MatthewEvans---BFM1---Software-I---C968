@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MatthewEvans___BFM1___Software_I___C968.model
 {
@@ -11,6 +12,7 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
     {
         public static BindingList<Product> Products = new BindingList<Product>();
         public static BindingList<Part> AllParts = new BindingList<Part>();
+        public static BindingList<int> PartNumbers = new BindingList<int>();
 
         Product myProduct = new Product();
 
@@ -150,9 +152,58 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
             }
         }
 
+        private void addPartNumber(int i)
+        {
+            PartNumbers.Add(AllParts[i].PartID);
+        }
+
+        /// <summary>
+        /// Function for generating and setting unique partID's
+        /// </summary>
+        /// <returns> Unique Part Number </returns>
         public int partIDGenerator()
         {
-            return AllParts.Count + 00001;
+            int i = 0;
+            int missingEntry = 0;
+
+            while (i < AllParts.Count)
+            {
+                if (AllParts[0].PartID > 1)
+                {
+                    return 1;
+                }
+                if (missingEntry == 0)
+                {
+                    if ((i + 1) == AllParts[i].PartID)
+                    {
+                        i++;
+                        continue;
+
+                    }
+                    else
+                    {
+                        missingEntry = (AllParts[i].PartID - 1);
+                        i++;
+                    }
+                }
+
+                if (missingEntry == AllParts[i].PartID)
+                {
+                    return (AllParts.Count + 1);
+                }
+                else
+                {
+                    i++;
+                    continue;
+                }
+                
+            }
+
+            if (missingEntry > 0)
+            {
+                return missingEntry;
+            }
+            else { return (i + 1); }
         }
 
         public int productIDGenerator()
