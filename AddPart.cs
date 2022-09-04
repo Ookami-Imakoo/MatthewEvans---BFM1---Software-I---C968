@@ -115,7 +115,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         //closes Add Part screen
         private void cancelButton_Click(object sender, EventArgs e)
-        {
+    {
             this.Close();
         }
 

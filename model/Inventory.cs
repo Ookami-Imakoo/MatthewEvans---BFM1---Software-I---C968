@@ -166,44 +166,48 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
             int i = 0;
             int missingEntry = 0;
 
-            while (i < AllParts.Count)
+            do
             {
-                if (AllParts[0].PartID > 1)
+                if (AllParts.Count == 0)
                 {
                     return 1;
                 }
-                if (missingEntry == 0)
+                else if (AllParts[0].PartID > 1)
                 {
-                    if ((i + 1) == AllParts[i].PartID)
-                    {
-                        i++;
-                        continue;
-
-                    }
-                    else
-                    {
-                        missingEntry = (AllParts[i].PartID - 1);
-                        i++;
-                    }
+                    missingEntry = 1;
+                    break;
                 }
-
-                if (missingEntry == AllParts[i].PartID)
-                {
-                    return (AllParts.Count + 1);
-                }
-                else
+                else if ((i + 1) == AllParts[i].PartID)
                 {
                     i++;
                     continue;
                 }
-                
+                else
+                {
+                    missingEntry = (AllParts[i].PartID - 1);
+                    break;
+                }
             }
+            while (i != AllParts.Count);
 
-            if (missingEntry > 0)
+            do
             {
-                return missingEntry;
+                if (i == AllParts.Count) 
+                {
+                    return (AllParts.Count + 1);
+                }
+                else if (missingEntry != AllParts[i].PartID)
+                {
+                    i++;
+                    continue;
+                }
+                else if (missingEntry == AllParts[i].PartID)
+                {
+                    return (AllParts.Count + 1);
+                }
             }
-            else { return (i + 1); }
+            while (i != AllParts.Count);    
+            return missingEntry;
         }
 
         public int productIDGenerator()
