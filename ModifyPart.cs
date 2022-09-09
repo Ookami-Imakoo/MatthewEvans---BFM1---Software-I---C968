@@ -140,16 +140,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         private void saveModifiedOutsourced()
         {
-            Outsourced outsourced = new Outsourced
-            {
-                PartID = int.Parse(idValue.Text),
-                Name = nameValue.Text,
-                Price = decimal.Parse(priceCostValue.Text),
-                InStock = Int32.Parse(inventoryValue.Text),
-                Min = Int32.Parse(minValue.Text),
-                Max = Int32.Parse(maxValue.Text),
-                CompanyName = companyNameValue.Text
-            };
+            Outsourced outsourced = new Outsourced(int.Parse(idValue.Text), nameValue.Text, decimal.Parse(priceCostValue.Text), Int32.Parse(inventoryValue.Text), Int32.Parse(minValue.Text), Int32.Parse(maxValue.Text), Int32.Parse(companyNameValue.Text));
 
             for (int i = 0; i < Inventory.AllParts.Count; i++)
             {

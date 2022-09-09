@@ -151,6 +151,11 @@ namespace MatthewEvans___BFM1___Software_I___C968
                 inventory.addPart(new Inhouse(3, "Strorage Compartment Cover", 7.46m, 10, 10, 99, 8675309));
                 inventory.addPart(new Inhouse(4, "3/4 in. Push-to-Connect Brass Ball Valve", 26.97m, 22, 5, 100, 8675309));
                 inventory.addPart(new Inhouse(5, "1/2 in. FIP x MHT Bras Flanged Sillcock Valve", 7.78m, 11, 5, 100, 8675309));
+                inventory.addPart(new Outsourced(6, "Rear Weight Bracket", 67.41m, 1, 1, 20, 8675309));
+                inventory.addPart(new Outsourced(7, "Magnetic Hitch Pin", 18.99m, 5, 1, 10, 8675309));
+                inventory.addPart(new Outsourced(8, "Strorage Compartment Cover", 7.46m, 10, 10, 99, 8675309));
+                inventory.addPart(new Outsourced(9, "3/4 in. Push-to-Connect Brass Ball Valve", 26.97m, 22, 5, 100, 8675309));
+                inventory.addPart(new Outsourced(10, "1/2 in. FIP x MHT Bras Flanged Sillcock Valve", 7.78m, 11, 5, 100, 8675309));
 
 
                 //Product Sample Data
