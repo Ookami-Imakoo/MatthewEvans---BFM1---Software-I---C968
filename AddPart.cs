@@ -44,9 +44,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            //int testResult = test();
-
-            if (inhouseRadioButton.Checked == true /*&& testResult == 1*/) 
+            if (inhouseRadioButton.Checked == true) 
             { 
                 
                 Inhouse inhouse = new Inhouse
@@ -158,34 +156,62 @@ namespace MatthewEvans___BFM1___Software_I___C968
             }
         }
 
-        //private int test()
-        //{
-        //    decimal parsedDecimal;
-
-        //    if (nameValue.Text == "")
-        //    {
-        //        MessageBox.Show("Please input a valid NAME");
-        //        return 0;
-        //    }
-        //    if (priceCostValue.Text == "")
-        //    {
-        //        MessageBox.Show("Please input a valid Cost (format -- x.xx)");
-        //        return 0;
-        //    }
-        //    else return 1;
-
-        //}
-
-
-        //restrics input to numbers, "." and allows for the backspace key to still work
-        private void inventoryValue_KeyPress(object sender, KeyPressEventArgs e)
+        //function for restricting key presses to digits and backspace
+        private void keyPress_DigitBackspace(object sender, KeyPressEventArgs e)
         {
-            char ch = e.KeyChar; //veriable for storeing the key pressed
+            char ch = e.KeyChar; //variable "ch" for storing keypress
 
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46) //checks to see if the ch is a digit a backspace(key inumeration: 8)
-            {                                            //or a delete (key inumeration: 46)
+            if (!Char.IsDigit(ch) && ch != 8) //first checks if "ch" is a digit, then checks that key press
+            {                                //is equal to backspace enumeration
                 e.Handled = true;
             }
+        }
+
+        //restrics input to numbers and backspace
+        private void inventoryValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            keyPress_DigitBackspace(sender, e);
+        }
+
+        //restrics input to numbers and backspace
+        private void machineIDValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            keyPress_DigitBackspace(sender, e);
+        }
+
+        //restrics input to numbers and backspace
+        private void maxValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            keyPress_DigitBackspace(sender, e);
+        }
+
+        //restrics input to numbers and backspace
+        private void minValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            keyPress_DigitBackspace(sender, e);
+        }
+
+        //restrics input to numbers, "." and backspace
+        private void priceCostValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar; //variable "ch" for storing keypress
+            int i = 1;
+
+            if (!Char.IsDigit(ch) && ch != 8) //first checks if "ch" is a digit, then checks to see ifthe 
+            {                                //key press was the symbol '.' and finally it checks to see if
+                e.Handled = true;           //the key pressed was equal to backspace's enumeration
+            }
+            
+            while (i == 1)
+            {
+                if (Char.IsSymbol(ch))
+                {
+                    e.Handled = true;
+                    i--;
+                }
+            }
+
+
         }
     }
     }

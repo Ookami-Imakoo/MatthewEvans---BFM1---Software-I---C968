@@ -143,6 +143,7 @@
             this.priceCostValue.Name = "priceCostValue";
             this.priceCostValue.Size = new System.Drawing.Size(180, 35);
             this.priceCostValue.TabIndex = 10;
+            this.priceCostValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.priceCostValue_KeyPress);
             // 
             // priceCostLabel
             // 
@@ -159,6 +160,7 @@
             this.maxValue.Name = "maxValue";
             this.maxValue.Size = new System.Drawing.Size(100, 35);
             this.maxValue.TabIndex = 12;
+            this.maxValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maxValue_KeyPress);
             // 
             // maxLabel
             // 
@@ -175,6 +177,7 @@
             this.machineIDValue.Name = "machineIDValue";
             this.machineIDValue.Size = new System.Drawing.Size(180, 35);
             this.machineIDValue.TabIndex = 14;
+            this.machineIDValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.machineIDValue_KeyPress);
             // 
             // machineIDLabel
             // 
@@ -191,6 +194,7 @@
             this.minValue.Name = "minValue";
             this.minValue.Size = new System.Drawing.Size(100, 35);
             this.minValue.TabIndex = 16;
+            this.minValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.minValue_KeyPress);
             // 
             // minLabel
             // 
