@@ -12,15 +12,60 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MatthewEvans___BFM1___Software_I___C968
 {
-    public partial class addPartScreen : Form
+    public partial class partScreen : Form
     {
+        //Initialize instance of Inventory class
         Inventory inventory = new Inventory();
-        public addPartScreen()
+
+        //Defualt Constructor
+        public partScreen()
         {
             InitializeComponent();
 
             idValue.Text = inventory.partIDGenerator().ToString();
         }
+
+        /// <summary>
+        /// Constroctor with an inhouse argument
+        /// </summary>
+        /// <param name="inhouse">argument used to populate modify parts screen</param>
+        public partScreen(Inhouse inhouse)
+        {
+            partScreen modifyPart = new partScreen();
+
+            partsPageSetup(inhouse, modifyPart);
+
+            //sets data from the passed in inhouse object
+            modifyPart.idValue.Text = inhouse.PartID.ToString();
+            modifyPart.nameValue.Text = inhouse.Name.ToString();
+            modifyPart.inventoryValue.Text = inhouse.InStock.ToString();
+            modifyPart.priceCostValue.Text = inhouse.Price.ToString();
+            modifyPart.maxValue.Text = inhouse.Max.ToString();
+            modifyPart.minValue.Text = inhouse.Min.ToString();
+            modifyPart.machineIDValue.Text = inhouse.MachineID.ToString();
+
+            modifyPart.Show();
+        }
+
+        public partScreen(Outsourced outsourced)
+        {
+            partScreen modifyPart = new partScreen();
+
+            partsPageSetup(outsourced, modifyPart);
+
+
+            //sets data from the passed in inhouse object
+            modifyPart.idValue.Text = outsourced.PartID.ToString();
+            modifyPart.nameValue.Text = outsourced.Name.ToString();
+            modifyPart.inventoryValue.Text = outsourced.InStock.ToString();
+            modifyPart.priceCostValue.Text = outsourced.Price.ToString();
+            modifyPart.maxValue.Text = outsourced.Max.ToString();
+            modifyPart.minValue.Text = outsourced.Min.ToString();
+            modifyPart.companyNameValue.Text = outsourced.CompanyName.ToString();
+
+            modifyPart.Show();
+        }
+
 
         private void inhouseRadioButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -78,7 +123,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
             }
             else if (outsourcedRadioButton.Checked == true && nameValue.Text != "")
             {
-                Outsourced outsourced = new Outsourced(int.Parse(idValue.Text), nameValue.Text, decimal.Parse(priceCostValue.Text), Int32.Parse(inventoryValue.Text), Int32.Parse(minValue.Text), Int32.Parse(maxValue.Text), Int32.Parse(companyNameValue.Text));
+                Outsourced outsourced = new Outsourced(int.Parse(idValue.Text), nameValue.Text, decimal.Parse(priceCostValue.Text), Int32.Parse(inventoryValue.Text), Int32.Parse(minValue.Text), Int32.Parse(maxValue.Text), companyNameValue.Text);
 
                 if (inventoryLogic(outsourced) == 1)
                 {
@@ -194,6 +239,45 @@ namespace MatthewEvans___BFM1___Software_I___C968
             }
 
 
+        }
+
+
+
+
+
+
+        private void partsPageSetup(Part part, partScreen modifyPart)
+        {
+            if (part is Inhouse)
+            {
+                //sets Inhouse Radio Button to true
+                modifyPart.inhouseRadioButton.Checked = true;
+
+                //shows Machine ID Label/Value and hides Company Name Label/Value
+                modifyPart.machineIDLabel.Show();
+                modifyPart.machineIDValue.Show();
+                modifyPart.modifyPartLabel.Show();
+                modifyPart.companyNameLabel.Hide();
+                modifyPart.companyNameValue.Hide();
+                modifyPart.addPartLabel.Hide();
+            }
+            else if (part is Outsourced)
+            {
+                //sets Inhouse Radio Button to true
+                modifyPart.outsourcedRadioButton.Checked = true;
+
+                //shows Machine ID Label/Value and hides Company Name Label/Value
+                modifyPart.companyNameLabel.Show();
+                modifyPart.companyNameValue.Show();
+                modifyPart.modifyPartLabel.Show();
+                modifyPart.machineIDLabel.Hide();
+                modifyPart.machineIDValue.Hide();
+                modifyPart.addPartLabel.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Part not Identified!");
+            }
         }
     }
     }

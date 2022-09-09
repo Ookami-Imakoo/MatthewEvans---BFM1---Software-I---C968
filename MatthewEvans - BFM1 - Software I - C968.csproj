@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddProduct.cs">
+    <Compile Include="productScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddProduct.Designer.cs">
-      <DependentUpon>AddProduct.cs</DependentUpon>
+    <Compile Include="productScreen.Designer.cs">
+      <DependentUpon>productScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="model\Inhouse.cs" />
     <Compile Include="MainScreen.cs">
@@ -59,11 +59,11 @@
     <Compile Include="MainScreen.Designer.cs">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddPart.cs">
+    <Compile Include="partScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddPart.Designer.cs">
-      <DependentUpon>AddPart.cs</DependentUpon>
+    <Compile Include="partScreen.Designer.cs">
+      <DependentUpon>partScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="model\Inventory.cs" />
     <Compile Include="ModifyPart.cs">
@@ -83,14 +83,14 @@
     <Compile Include="model\Product.cs" />
     <Compile Include="model\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddProduct.resx">
-      <DependentUpon>AddProduct.cs</DependentUpon>
+    <EmbeddedResource Include="productScreen.resx">
+      <DependentUpon>productScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainScreen.resx">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddPart.resx">
-      <DependentUpon>AddPart.cs</DependentUpon>
+    <EmbeddedResource Include="partScreen.resx">
+      <DependentUpon>partScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModifyPart.resx">
       <DependentUpon>ModifyPart.cs</DependentUpon>

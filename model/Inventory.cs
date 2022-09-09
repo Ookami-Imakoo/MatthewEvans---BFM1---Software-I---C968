@@ -10,19 +10,19 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
 {
     public class Inventory
     {
-        public static BindingList<Product> Products = new BindingList<Product>();
-        public static BindingList<Part> AllParts = new BindingList<Part>();
-        public static BindingList<int> PartNumbers = new BindingList<int>();
+        //Initialization of Product
+        //Product product = new Product();
 
-        Product myProduct = new Product();
-
+        public static BindingList<Product> Products = new BindingList<Product>(); //Binding list for storeing Product objects
+        public static BindingList<Part> AllParts = new BindingList<Part>(); //Binding list for storeing Part objects
+        
         /// <summary>
-        /// Function for createing new products.
+        /// Method for adding products to Products BindingList.
         /// </summary>
-        /// <param name="Product"></param>
-        public void addProduct(Product Product)
+        /// <param name="Product">Product to be added to BindingList</param>
+        public void addProduct(Product product)
         {
-            Products.Add(Product);
+            Products.Add(product);
         }
 
         /// <summary>
@@ -47,17 +47,17 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
         /// </summary>
         /// <param name="x"> Represents the Product ID to be searched. </param>
         /// <returns> Returns the product with the corisponding Product ID. </returns>
-        public Product lookupProduct(int x)
-        {
-            for (int i = 0; i < Products.Count; i++)
-            {
-                if (x == myProduct.ProductID)
-                {
-                    return Products[x];
-                }
-            }
-            return null;
-        }
+        //public Product lookupProduct(int x)
+        //{
+        //    for (int i = 0; i < Products.Count; i++)
+        //    {
+        //        if (x == product.ProductID)
+        //        {
+        //            return Products[x];
+        //        }
+        //    }
+        //    return null;
+        //}
 
         /*
          * Still unsure what to do with this function, hopeing that it will be more clear as I put the application together.
@@ -152,10 +152,10 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
             }
         }
 
-        private void addPartNumber(int i)
-        {
-            PartNumbers.Add(AllParts[i].PartID);
-        }
+        //private void addPartNumber(int i)
+        //{
+        //    PartNumbers.Add(AllParts[i].PartID);
+        //}
 
         /// <summary>
         /// Function for generating and setting unique partID's
@@ -213,6 +213,12 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
         public int productIDGenerator()
         {
             return Products.Count + 00001;
+        }
+
+        public Part dataSetup(int x)
+        {
+            Part part = AllParts[x];
+            return part;
         }
     }
 }

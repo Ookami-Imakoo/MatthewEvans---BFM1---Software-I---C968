@@ -11,13 +11,13 @@ using System.Windows.Forms;
 
 namespace MatthewEvans___BFM1___Software_I___C968
 {
-    public partial class AddProduct : Form
+    public partial class productScreen : Form
     {
-        //initialization of Inventory
+        //initialization of Inventory and Product
         Inventory inventory = new Inventory();
         Product myProduct = new Product();
 
-        public AddProduct()
+        public productScreen()
         {
             InitializeComponent();
             
@@ -26,6 +26,15 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
             idValue.Text = inventory.productIDGenerator().ToString();
         }
+
+        public productScreen(Product selectedProduct)
+        {
+
+        }
+
+        ////////////////
+        /// Buttons ///
+        ///////////////
 
         //created a product adding it to the 
         private void productSaveButton_Click(object sender, EventArgs e)
