@@ -146,11 +146,11 @@ namespace MatthewEvans___BFM1___Software_I___C968
             if (setupData < 1)
             {
                 //Part Sample Data
-                inventory.addPart(new Inhouse { PartID = 1, Name = "Rear Weight Bracket", Price = 67.41m, InStock = 1, Min = 1, Max = 20, MachineID = 8675309 });
-                inventory.addPart(new Inhouse { PartID = 2, Name = "Magnetic Hitch Pin", Price = 18.99m, InStock = 5, Min = 1, Max = 10, MachineID = 8675309 });
-                inventory.addPart(new Inhouse { PartID = 3, Name = "Strorage Compartment Cover", Price = 7.46m, InStock = 10, Min = 10, Max = 99, MachineID = 8675309 });
-                inventory.addPart(new Inhouse { PartID = 4, Name = "3/4 in. Push-to-Connect Brass Ball Valve", Price = 26.97m, InStock = 22, Min = 5, Max = 100, MachineID = 8675309 });
-                inventory.addPart(new Inhouse { PartID = 5, Name = "1/2 in. x3/4 in. FIP x MHT Bras Flanged Sillcock Valve", Price = 7.78m, InStock = 11, Min = 5, Max = 100, MachineID = 8675309 });
+                inventory.addPart(new Inhouse(1, "Rear Weight Bracket", 67.41m, 1, 1, 20, 8675309));
+                inventory.addPart(new Inhouse(2, "Magnetic Hitch Pin", 18.99m, 5, 1, 10, 8675309));
+                inventory.addPart(new Inhouse(3, "Strorage Compartment Cover", 7.46m, 10, 10, 99, 8675309));
+                inventory.addPart(new Inhouse(4, "3/4 in. Push-to-Connect Brass Ball Valve", 26.97m, 22, 5, 100, 8675309));
+                inventory.addPart(new Inhouse(5, "1/2 in. FIP x MHT Bras Flanged Sillcock Valve", 7.78m, 11, 5, 100, 8675309));
 
 
                 //Product Sample Data

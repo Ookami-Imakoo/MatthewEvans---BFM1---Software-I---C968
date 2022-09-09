@@ -45,18 +45,18 @@ namespace MatthewEvans___BFM1___Software_I___C968
         private void saveButton_Click(object sender, EventArgs e)
         {
             if (inhouseRadioButton.Checked == true) 
-            { 
-                
-                Inhouse inhouse = new Inhouse
-                {
-                    PartID = int.Parse(idValue.Text),
-                    Name = nameValue.Text,
-                    Price = decimal.Parse(priceCostValue.Text),
-                    InStock = Int32.Parse(inventoryValue.Text),
-                    Min = Int32.Parse(minValue.Text),
-                    Max = Int32.Parse(maxValue.Text),
-                    MachineID = Int32.Parse(machineIDValue.Text)
-                };
+            {
+
+                Inhouse inhouse = new Inhouse(int.Parse(idValue.Text), nameValue.Text, decimal.Parse(priceCostValue.Text), Int32.Parse(inventoryValue.Text), Int32.Parse(minValue.Text), Int32.Parse(maxValue.Text), Int32.Parse(machineIDValue.Text));
+                //{
+                //    PartID = int.Parse(idValue.Text),
+                //    Name = nameValue.Text,
+                //    Price = decimal.Parse(priceCostValue.Text),
+                //    InStock = Int32.Parse(inventoryValue.Text),
+                //    Min = Int32.Parse(minValue.Text),
+                //    Max = Int32.Parse(maxValue.Text),
+                //    MachineID = Int32.Parse(machineIDValue.Text)
+                //};
 
                 if (inventoryLogic(inhouse) == 1) 
                 { 
