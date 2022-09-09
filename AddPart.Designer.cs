@@ -126,6 +126,7 @@
             this.inventoryValue.Name = "inventoryValue";
             this.inventoryValue.Size = new System.Drawing.Size(180, 35);
             this.inventoryValue.TabIndex = 8;
+            this.inventoryValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inventoryValue_KeyPress);
             // 
             // inventoryLabel
             // 

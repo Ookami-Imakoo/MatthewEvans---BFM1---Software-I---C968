@@ -19,6 +19,8 @@ namespace MatthewEvans___BFM1___Software_I___C968
         public ModifyProduct()
         {
             InitializeComponent();
+
+            addProductSetup();
         }
 
         public ModifyProduct(Product product)
@@ -72,6 +74,14 @@ namespace MatthewEvans___BFM1___Software_I___C968
                 }
 
             }
+        }
+
+        private void addProductSetup()
+        {
+            allCandidateDataGridView.DataSource = Inventory.AllParts; //sets data for All Candidate Parts DataGrid
+            partsAssociatedDataGridView.DataSource = myProduct.AssociatedParts; //sets data for Parts Associated DataGrid
+
+
         }
 
         //

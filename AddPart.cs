@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MatthewEvans___BFM1___Software_I___C968
 {
@@ -43,8 +44,11 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (inhouseRadioButton.Checked == true)
-            {
+            //int testResult = test();
+
+            if (inhouseRadioButton.Checked == true /*&& testResult == 1*/) 
+            { 
+                
                 Inhouse inhouse = new Inhouse
                 {
                     PartID = int.Parse(idValue.Text),
@@ -56,12 +60,10 @@ namespace MatthewEvans___BFM1___Software_I___C968
                     MachineID = Int32.Parse(machineIDValue.Text)
                 };
 
-                //invetoryLogicSwitch(inhouse);
-
-                if (inventoryLogic(inhouse) == 1)
-                {
-                    inventory.addPart(inhouse);
-                    this.Close();
+                if (inventoryLogic(inhouse) == 1) 
+                { 
+                inventory.addPart(inhouse);
+                this.Close();
                 }
                 else if (inventoryLogic(inhouse) == 2)
                 {
@@ -71,13 +73,21 @@ namespace MatthewEvans___BFM1___Software_I___C968
                 {
                     MessageBox.Show("Inventory Above Max Values");
                 }
+                else if (inventoryLogic(inhouse) == 4)
+                {
+                    MessageBox.Show("Check Price");
+                }
+                else if (inventoryLogic(inhouse) == 99)
+                {
+                    MessageBox.Show("Fields Blank");
+                }
                 else
                 {
                     MessageBox.Show("Error");
                 }
 
             }
-            else
+            else if (outsourcedRadioButton.Checked == true && nameValue.Text != "")
             {
                 Outsourced outsourced = new Outsourced
                 {
@@ -89,8 +99,6 @@ namespace MatthewEvans___BFM1___Software_I___C968
                     Max = Int32.Parse(maxValue.Text),
                     CompanyName = companyNameValue.Text
                 };
-
-                //invetoryLogicSwitch(outsourced);
 
                 if (inventoryLogic(outsourced) == 1)
                 {
@@ -109,8 +117,12 @@ namespace MatthewEvans___BFM1___Software_I___C968
                 {
                     MessageBox.Show("Error");
                 }
-            }   
-            this.Close();
+            }
+            //else
+            //{
+            //    MessageBox.Show("Please check that all fields are filled out correctly before submitting");
+            //}
+            
         }
 
         //closes Add Part screen
@@ -133,9 +145,46 @@ namespace MatthewEvans___BFM1___Software_I___C968
             {
                 return 3;
             }
+            else if (decimal.TryParse(priceCostValue.Text, out decimal parsedValue)){
+                return 4;
+            }
+            else if (nameValue.Text == null)
+            {
+                return 99;
+            }
             else
             {
                 return 0;
+            }
+        }
+
+        //private int test()
+        //{
+        //    decimal parsedDecimal;
+
+        //    if (nameValue.Text == "")
+        //    {
+        //        MessageBox.Show("Please input a valid NAME");
+        //        return 0;
+        //    }
+        //    if (priceCostValue.Text == "")
+        //    {
+        //        MessageBox.Show("Please input a valid Cost (format -- x.xx)");
+        //        return 0;
+        //    }
+        //    else return 1;
+
+        //}
+
+
+        //restrics input to numbers, "." and allows for the backspace key to still work
+        private void inventoryValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar; //veriable for storeing the key pressed
+
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46) //checks to see if the ch is a digit a backspace(key inumeration: 8)
+            {                                            //or a delete (key inumeration: 46)
+                e.Handled = true;
             }
         }
     }
