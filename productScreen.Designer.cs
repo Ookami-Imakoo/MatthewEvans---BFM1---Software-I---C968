@@ -1,6 +1,6 @@
 ﻿namespace MatthewEvans___BFM1___Software_I___C968
 {
-    partial class AddProduct
+    partial class productScreen
     {
         /// <summary>
         /// Required designer variable.

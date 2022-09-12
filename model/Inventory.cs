@@ -10,19 +10,19 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
 {
     public class Inventory
     {
-        public static BindingList<Product> Products = new BindingList<Product>();
-        public static BindingList<Part> AllParts = new BindingList<Part>();
-        public static BindingList<int> PartNumbers = new BindingList<int>();
+        //Initialization of Product
+        //Product product = new Product();
 
-        Product myProduct = new Product();
-
+        public static BindingList<Product> Products = new BindingList<Product>(); //Binding list for storeing Product objects
+        public static BindingList<Part> AllParts = new BindingList<Part>(); //Binding list for storeing Part objects
+        
         /// <summary>
-        /// Function for createing new products.
+        /// Method for adding products to Products BindingList.
         /// </summary>
-        /// <param name="Product"></param>
-        public void addProduct(Product Product)
+        /// <param name="Product">Product to be added to BindingList</param>
+        public void addProduct(Product product)
         {
-            Products.Add(Product);
+            Products.Add(product);
         }
 
         /// <summary>
@@ -41,38 +41,6 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
             }
             return false;
         }
-
-        /// <summary>
-        /// Represents a function that looks up a product useing the product ID.
-        /// </summary>
-        /// <param name="x"> Represents the Product ID to be searched. </param>
-        /// <returns> Returns the product with the corisponding Product ID. </returns>
-        public Product lookupProduct(int x)
-        {
-            for (int i = 0; i < Products.Count; i++)
-            {
-                if (x == myProduct.ProductID)
-                {
-                    return Products[x];
-                }
-            }
-            return null;
-        }
-
-        /*
-         * Still unsure what to do with this function, hopeing that it will be more clear as I put the application together.
-         * 
-        public void updateProduct(int x, Product myProduct)
-        {
-            for (int i = 0 ; i < Products.Count ; i++)
-            {
-                if (x == myProduct.ProductID)
-                {
-                    Products.Remove[i];
-                }
-            }
-        }
-        */
 
         /// <summary>
         /// Represents a function that adds a Part to the All Parts list.
@@ -119,20 +87,142 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
         }
 
         /// <summary>
-        /// Refers to the function that will look up a part based on an integer (PartID) input
+        /// Refers to the function that will look up a part based on input in the partSearchValue textbox
         /// </summary>
-        /// <param name="x"> Refers to the Part ID to be looked up </param>
-        /// <returns> Returns the part if found and null if not found </returns>
-        public Part lookupPart(int x)
+        /// <param name="x"> Refers input from partSearchValue textbox </param>
+        public void lookupPart(int x)
         {
-            for (int i = 0; i < AllParts.Count; i++)
-            {
-                if (x == AllParts[i].PartID)
+            int i = 0;
+
+            while (i < AllParts.Count){
+                if (i == AllParts.Count - 1)
                 {
-                    return AllParts[i];
+                    if (x == AllParts[i].PartID)
+                    {
+                        MessageBox.Show($"Part with id: {x} was found.");
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"No part with id: {x} was found.");
+                        return;
+                    }
+                }
+                else if (x == AllParts[i].PartID)
+                {
+                    MessageBox.Show($"Part with id: {x} was found.");
+                    return;
+                }
+                else if (x != AllParts[i].PartID)
+                {
+                    i++;
+                } 
+            }
+        }
+
+        /// <summary>
+        /// Refers to the function that will look up a part based on input in the partSearchValue textbox
+        /// </summary>
+        /// <param name="x"> Refers input from partSearchValue textbox </param>
+        public void lookupPart(String x)
+        {
+            int i = 0;
+
+            while (i < AllParts.Count)
+            {
+                if (i == AllParts.Count - 1)
+                {
+                    if (x == AllParts[i].Name)
+                    {
+                        MessageBox.Show($"Part with Name: {x} was found.");
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"No part with Name: {x} was found.");
+                        return;
+                    }
+                }
+                else if (x == AllParts[i].Name)
+                {
+                    MessageBox.Show($"Part with Name: {x} Name found.");
+                    return;
+                }
+                else if (x != AllParts[i].Name)
+                {
+                    i++;
                 }
             }
-            return null;
+        }
+
+        /// <summary>
+        /// Refers to the function that will look up a part based on input in the partSearchValue textbox
+        /// </summary>
+        /// <param name="x"> Refers input from partSearchValue textbox </param>
+        public void lookupProudct(int x)
+        {
+            int i = 0;
+
+            while (i < Products.Count)
+            {
+                if (i == Products.Count - 1)
+                {
+                    if (x == Products[i].ProductID)
+                    {
+                        MessageBox.Show($"Product with ID: {x} was found.");
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"No Product with ID: {x} was found.");
+                        return;
+                    }
+                }
+                else if (x == Products[i].ProductID)
+                {
+                    MessageBox.Show($"Product with ID: {x} was found.");
+                    return;
+                }
+                else if (x != Products[i].ProductID)
+                {
+                    i++;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Refers to the function that will look up a part based on input in the partSearchValue textbox
+        /// </summary>
+        /// <param name="x"> Refers input from partSearchValue textbox </param>
+        public void lookupProudct(String x)
+        {
+            int i = 0;
+
+            while (i < Products.Count)
+            {
+                if (i == Products.Count - 1)
+                {
+                    if (x == Products[i].Name)
+                    {
+                        MessageBox.Show($"Product with Name: {x} was found.");
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"No Product with Name: {x} was found.");
+                        return;
+                    }
+                }
+                else if (x == Products[i].Name)
+                {
+                    MessageBox.Show($"Product with Name: {x} was found.");
+                    return;
+                }
+                else if (x != Products[i].Name)
+                {
+                    i++;
+                }
+            }
         }
 
         /// <summary>
@@ -142,20 +232,14 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
         /// <param name="myPart"> Represents the part to be placed in the list after the removal of the old data. </param>
         public void updatePart(int x, Part myPart)
         {
-            for (int i = 0; i < AllParts.Count; i++)
-            {
-                if (x == myPart.PartID)
-                {
-                    AllParts.RemoveAt(x);
-                    AllParts.Add(myPart);
-                }
-            }
+            AllParts.RemoveAt(x - 1);
+            AllParts.Add(myPart);
         }
 
-        private void addPartNumber(int i)
-        {
-            PartNumbers.Add(AllParts[i].PartID);
-        }
+        //private void addPartNumber(int i)
+        //{
+        //    PartNumbers.Add(AllParts[i].PartID);
+        //}
 
         /// <summary>
         /// Function for generating and setting unique partID's
@@ -212,7 +296,68 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
 
         public int productIDGenerator()
         {
-            return Products.Count + 00001;
+            int i = 0;
+            int missingEntry = 0;
+
+            do
+            {
+                if (Products.Count == 0)
+                {
+                    return 1;
+                }
+                else if (Products[0].ProductID > 1)
+                {
+                    missingEntry = 1;
+                    break;
+                }
+                else if ((i + 1) == Products[i].ProductID)
+                {
+                    i++;
+                    continue;
+                }
+                else
+                {
+                    missingEntry = (Products[i].ProductID - 1);
+                    break;
+                }
+            }
+            while (i != Products.Count);
+
+            do
+            {
+                if (i == Products.Count)
+                {
+                    return (Products.Count + 1);
+                }
+                else if (missingEntry != Products[i].ProductID)
+                {
+                    i++;
+                    continue;
+                }
+                else if (missingEntry == Products[i].ProductID)
+                {
+                    return (Products.Count + 1);
+                }
+            }
+            while (i != Products.Count);
+            return missingEntry;
+        }
+
+        public Part dataSetup(int x)
+        {
+            Part part = AllParts[x];
+            return part;
+        }
+
+        public bool checkExistence(Part part)
+        {
+            for (int i = 0; i < AllParts.Count; i++){
+                if (AllParts[i].PartID == part.PartID)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

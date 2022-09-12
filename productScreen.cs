@@ -11,13 +11,13 @@ using System.Windows.Forms;
 
 namespace MatthewEvans___BFM1___Software_I___C968
 {
-    public partial class AddProduct : Form
+    public partial class productScreen : Form
     {
-        //initialization of Inventory
+        //initialization of Inventory and Product
         Inventory inventory = new Inventory();
         Product myProduct = new Product();
 
-        public AddProduct()
+        public productScreen()
         {
             InitializeComponent();
             
@@ -27,12 +27,31 @@ namespace MatthewEvans___BFM1___Software_I___C968
             idValue.Text = inventory.productIDGenerator().ToString();
         }
 
+        public productScreen(Product selectedProduct)
+        {
+            productScreen modifyProduct = new productScreen();
+
+            //sets data from the passed in inhouse object
+            modifyProduct.idValue.Text = selectedProduct.ProductID.ToString();
+            modifyProduct.nameValue.Text = selectedProduct.Name.ToString();
+            modifyProduct.inventoryValue.Text = selectedProduct.InStock.ToString();
+            modifyProduct.priceCostValue.Text = selectedProduct.Price.ToString();
+            modifyProduct.maxValue.Text = selectedProduct.Max.ToString();
+            modifyProduct.minValue.Text = selectedProduct.Min.ToString();
+
+            modifyProduct.Show();
+        }
+
+        ////////////////
+        /// Buttons ///
+        ///////////////
+
         //created a product adding it to the 
         private void productSaveButton_Click(object sender, EventArgs e)
         {
             Product product = new Product
             {
-                ProductID = 1,
+                ProductID = int.Parse(idValue.Text),
                 Name = nameValue.Text,
                 InStock = int.Parse(inventoryValue.Text),
                 Price = decimal.Parse(priceCostValue.Text),
@@ -131,15 +150,6 @@ namespace MatthewEvans___BFM1___Software_I___C968
                 return 0;
             }
         }
-
-        //private void InvetoryLogicSwitch(Product product)
-        //{
-        //    switch (product)
-        //    {
-        //        case product.InStock <= product.Max:
-        //    }
-        //}
-
 
         //closes add product screen
         private void productCancelButton_Click(object sender, EventArgs e)

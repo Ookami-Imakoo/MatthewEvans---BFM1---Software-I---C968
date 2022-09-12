@@ -21,9 +21,36 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
 
         public BindingList<Part> AssociatedParts = new BindingList<Part>();
 
-        public void addAssociatedPart(Part part)
+        //default constructor
+        public Product()
         {
-            AssociatedParts.Add(part);
+
+        }
+
+        public Product(int ProductID, String Name, decimal Price, int InStock, int Min, int Max)
+        {
+            this.ProductID = ProductID;
+            this.Name = Name;
+            this.Price = Price;
+            this.InStock = InStock;
+            this.Min = Min;
+            this.Max = Max;
+        }
+
+        public Product(int ProductID, String Name, decimal Price, int InStock, int Min, int Max, BindingList<Part> AssociatedParts)
+        {
+            this.ProductID = ProductID;
+            this.Name = Name;
+            this.Price = Price;
+            this.InStock = InStock;
+            this.Min = Min;
+            this.Max = Max;
+            this.AssociatedParts = AssociatedParts;
+        }
+
+        public void addAssociatedPart(Part myPart)
+        {
+            AssociatedParts.Add(myPart);
 
         }
 

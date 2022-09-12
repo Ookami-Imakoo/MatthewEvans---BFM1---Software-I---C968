@@ -9,6 +9,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,11 +17,12 @@ namespace MatthewEvans___BFM1___Software_I___C968
 {
     public partial class mainScreen : Form
     {
-        //Initialize Inventory
+        //Initialize instance of Inventory class
         Inventory inventory = new Inventory();
+        Product product = new Product();
 
         //Value used to setup data only once
-        int setupData = 0;
+        int setupData = 0; // 0: Setup Test Data || 1: Dont Setup Test Data
 
         public mainScreen()
         {
@@ -37,28 +39,38 @@ namespace MatthewEvans___BFM1___Software_I___C968
         private void partsDataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             partsDataGridView.ClearSelection();
+            productsDataGridView.ClearSelection();
         }
 
-        //opens the add parts screen
+        ////////////////
+        /// Buttons ///
+        ///////////////
+
+        //Parts - ADD Button
+        //opens a blank add part screen
         private void partsAddButton_Click(object sender, EventArgs e)
         {
-            addPartScreen addPartScreen = new addPartScreen();
+            partScreen addPartScreen = new partScreen();
             addPartScreen.ShowDialog();
         }
 
-        //opens add product screen
-        private void productsAddButton_Click(object sender, EventArgs e)
+        //Parts - MODIFY Button
+        //opens and populates modify parts screen
+        private void partsModifyButton_Click(object sender, EventArgs e)
         {
-            AddProduct addProduct = new AddProduct();
-            addProduct.Show();
+            if (partsDataGridView.CurrentRow.DataBoundItem is Inhouse) //checks to see if highlighted part is Inhouse
+            {
+                Inhouse selectedInhouse = partsDataGridView.CurrentRow.DataBoundItem as Inhouse; //stores selection in Inhouse object
+                partScreen modifyPartScreen = new partScreen(selectedInhouse); //opens the partScreen useing the data from selectedInhouse to populate the screen
+            }
+            else
+            {
+                Outsourced selectedOutsourced = partsDataGridView.CurrentRow.DataBoundItem as Outsourced; //stores selection in Outsourced object
+                partScreen modifyPartScreen = new partScreen(selectedOutsourced); //opens the partScreen useing the data from selectedOutsourced to populate the screen
+            }
         }
 
-        //closes application
-        private void exitButton_Click(object sender, EventArgs e)
-    {
-            this.Close();
-        }
-
+        //Parts - DELETE Button
         //button used to delete selected part
         public void partsDeleteButton_Click(object sender, EventArgs e)
         {
@@ -72,10 +84,33 @@ namespace MatthewEvans___BFM1___Software_I___C968
             inventory.deletePart(deletepart); //deleteing selecting from bindinglist
         }
 
+        //Products - ADD Button
+        //opens a blank add product screen
+        private void productsAddButton_Click(object sender, EventArgs e)
+        {
+            productScreen addProduct = new productScreen();
+            addProduct.Show();
+        }
+
+        //Products - MODIFY Button
+        //opens and populates productScreen
+        private void productsModifyButton_Click(object sender, EventArgs e)
+        {
+            if (productsDataGridView.CurrentRow == null || !productsDataGridView.CurrentRow.Selected)
+            {
+                MessageBox.Show("Nothing Selected!", "Please Make A Selection");
+                return;
+            }
+
+            Product selectedProduct = productsDataGridView.CurrentRow.DataBoundItem as Product;
+            productScreen modifyProduct = new productScreen(selectedProduct);
+        }
+
+        //Products - DELETE Button
         //button used to delete selected product
         private void productsDeleteButton_Click(object sender, EventArgs e)
         {
-            if(productsDataGridView.CurrentRow == null || !productsDataGridView.CurrentRow.Selected)
+            if (productsDataGridView.CurrentRow == null || !productsDataGridView.CurrentRow.Selected)
             {
                 MessageBox.Show("Nothing Selected!", "Please Make A Selection");
                 return;
@@ -86,48 +121,51 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         }
 
-        //opens and populates modify parts screen
-        private void partsModifyButton_Click(object sender, EventArgs e)
-        {
-           if(partsDataGridView.CurrentRow.DataBoundItem is Inhouse)
-           {
-               Inhouse selectedInhouse = partsDataGridView.CurrentRow.DataBoundItem as Inhouse; //stores selection in Inhouse object
-               ModifyPart modifyPart = new ModifyPart(selectedInhouse);
-           }
-           else
-           {
-               Outsourced selectedInhouse = partsDataGridView.CurrentRow.DataBoundItem as Outsourced; //stores selection in Outsourced object
-               ModifyPart modifyPart = new ModifyPart(selectedInhouse);
-           } 
-
-            
-
-        }
-
-        //opens and populates modify products screen
-        private void productsModifyButton_Click(object sender, EventArgs e)
-        {
-            if (productsDataGridView.CurrentRow == null || !productsDataGridView.CurrentRow.Selected)
-            {
-                MessageBox.Show("Nothing Selected!", "Please Make A Selection");
-                return;
-            }
-            Product selectedProduct = productsDataGridView.CurrentRow.DataBoundItem as Product;
-            ModifyProduct modifyProduct = new ModifyProduct(selectedProduct);
-        }
-
+        //Parts - Search Button
         //takes input from search text box and returns a message if found or not
         private void partsSearchButton_Click(object sender, EventArgs e)
         {
-            if (inventory.lookupPart(Int32.Parse(partsSearchValue.Text)) == null)
+            String searchInput = partsSearchValue.Text;
+
+            if(Regex.IsMatch(searchInput, @"^\d+$"))
             {
-                MessageBox.Show($"PartID: {Int32.Parse(partsSearchValue.Text)} was not found.");
-                return;
+                inventory.lookupPart(Int32.Parse(searchInput));
             }
-            Part partlookup = inventory.lookupPart(Int32.Parse(partsSearchValue.Text));
-            MessageBox.Show($"Part { partlookup.Name } with PartID: { partlookup.PartID } was found.");
+            else
+            {
+                inventory.lookupPart(searchInput);
+            }
+
         }
-        
+
+        //Product - Search Button
+        //takes input from search text box and returns a message if found or not
+        private void productsSearchButton_Click(object sender, EventArgs e)
+        {
+            String searchInput = productsSearchValue.Text;
+
+            if (Regex.IsMatch(searchInput, @"^\d+$"))
+            {
+                inventory.lookupProudct(Int32.Parse(searchInput));
+            }
+            else
+            {
+                inventory.lookupProudct(searchInput);
+            }
+        }
+
+        //MainScreen - EXIT Button
+        //closes application
+        private void exitButton_Click(object sender, EventArgs e)
+    {
+            this.Close();
+        }
+
+
+        ///////////////
+        //// Misc ////
+        //////////////
+
         //Settings for main screen form
         private void MainScreenSetup()
         {
@@ -146,18 +184,21 @@ namespace MatthewEvans___BFM1___Software_I___C968
             if (setupData < 1)
             {
                 //Part Sample Data
-                inventory.addPart(new Inhouse { PartID = 1, Name = "Rear Weight Bracket", Price = 67.41m, InStock = 1, Min = 1, Max = 20, MachineID = 8675309 });
-                inventory.addPart(new Inhouse { PartID = 2, Name = "Magnetic Hitch Pin", Price = 18.99m, InStock = 5, Min = 1, Max = 10, MachineID = 8675309 });
-                inventory.addPart(new Inhouse { PartID = 3, Name = "Strorage Compartment Cover", Price = 7.46m, InStock = 10, Min = 10, Max = 99, MachineID = 8675309 });
-                inventory.addPart(new Inhouse { PartID = 4, Name = "3/4 in. Push-to-Connect Brass Ball Valve", Price = 26.97m, InStock = 22, Min = 5, Max = 100, MachineID = 8675309 });
-                inventory.addPart(new Inhouse { PartID = 5, Name = "1/2 in. x3/4 in. FIP x MHT Bras Flanged Sillcock Valve", Price = 7.78m, InStock = 11, Min = 5, Max = 100, MachineID = 8675309 });
-
+                inventory.addPart(new Inhouse(1, "Rear Weight Bracket", 67.41m, 1, 1, 20, 8675309));
+                inventory.addPart(new Inhouse(2, "Magnetic Hitch Pin", 18.99m, 5, 1, 10, 8675309));
+                inventory.addPart(new Inhouse(3, "Strorage Compartment Cover", 7.46m, 10, 10, 99, 8675309));
+                inventory.addPart(new Inhouse(4, "3/4 in. Push-to-Connect Brass Ball Valve", 26.97m, 22, 5, 100, 8675309));
+                inventory.addPart(new Inhouse(5, "1/2 in. FIP x MHT Bras Flanged Sillcock Valve", 7.78m, 11, 5, 100, 8675309));
+                inventory.addPart(new Outsourced(6, "Rear Weight Bracket", 67.41m, 1, 1, 20, "Sanford and Sons"));
+                inventory.addPart(new Outsourced(7, "Magnetic Hitch Pin", 18.99m, 5, 1, 10, "John Deer"));
+                inventory.addPart(new Outsourced(8, "Strorage Compartment Cover", 7.46m, 10, 10, 99, "John Deer"));
+                inventory.addPart(new Outsourced(9, "3/4 in. Push-to-Connect Brass Ball Valve", 26.97m, 22, 5, 100, "Yamaha"));
+                inventory.addPart(new Outsourced(10, "1/2 in. FIP x MHT Bras Flanged Sillcock Valve", 7.78m, 11, 5, 100, "Yamaha"));
 
                 //Product Sample Data
-                inventory.addProduct(new Product { ProductID = 1, Name = "Riding Lawnmower", InStock = 6, Min = 2, Max = 10, Price = 2299.00m });
-                inventory.addProduct(new Product { ProductID = 2, Name = "40 Gal. 36,000 BTU Tank Water Heater", InStock = 2, Min = 0, Max = 2, Price = 519.00m });
-                inventory.addProduct(new Product { ProductID = 3, Name = "Colorado 5-Light Black Modern Farmhouse Rectangular Chandelier", InStock = 0, Min = 0, Max = 5, Price = 353.00m });
-
+                inventory.addProduct(new Product(1, "Riding Lawnmower", 6.99m, 2, 1, 10));
+                inventory.addProduct(new Product(2, "40 Gal. 36,000 BTU Tank Water Heater", 519.00m, 2, 0, 2));
+                inventory.addProduct(new Product(3, "Colorado 5-Light Black Modern Farmhouse Rectangular Chandelier", 353.00m, 0, 0, 5));
 
                 setupData++;
             }

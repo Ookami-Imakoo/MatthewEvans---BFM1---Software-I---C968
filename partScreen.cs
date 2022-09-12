@@ -12,15 +12,60 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MatthewEvans___BFM1___Software_I___C968
 {
-    public partial class addPartScreen : Form
+    public partial class partScreen : Form
     {
+        //Initialize instance of Inventory class
         Inventory inventory = new Inventory();
-        public addPartScreen()
+
+        //Defualt Constructor
+        public partScreen()
         {
             InitializeComponent();
 
             idValue.Text = inventory.partIDGenerator().ToString();
         }
+
+        /// <summary>
+        /// Constroctor with an inhouse argument
+        /// </summary>
+        /// <param name="inhouse">argument used to populate modify parts screen</param>
+        public partScreen(Inhouse inhouse)
+        {
+            partScreen modifyPart = new partScreen();
+
+            partsPageSetup(inhouse, modifyPart);
+
+            //sets data from the passed in inhouse object
+            modifyPart.idValue.Text = inhouse.PartID.ToString();
+            modifyPart.nameValue.Text = inhouse.Name.ToString();
+            modifyPart.inventoryValue.Text = inhouse.InStock.ToString();
+            modifyPart.priceCostValue.Text = inhouse.Price.ToString();
+            modifyPart.maxValue.Text = inhouse.Max.ToString();
+            modifyPart.minValue.Text = inhouse.Min.ToString();
+            modifyPart.machineIDValue.Text = inhouse.MachineID.ToString();
+
+            modifyPart.Show();
+        }
+
+        public partScreen(Outsourced outsourced)
+        {
+            partScreen modifyPart = new partScreen();
+
+            partsPageSetup(outsourced, modifyPart);
+
+
+            //sets data from the passed in inhouse object
+            modifyPart.idValue.Text = outsourced.PartID.ToString();
+            modifyPart.nameValue.Text = outsourced.Name.ToString();
+            modifyPart.inventoryValue.Text = outsourced.InStock.ToString();
+            modifyPart.priceCostValue.Text = outsourced.Price.ToString();
+            modifyPart.maxValue.Text = outsourced.Max.ToString();
+            modifyPart.minValue.Text = outsourced.Min.ToString();
+            modifyPart.companyNameValue.Text = outsourced.CompanyName.ToString();
+
+            modifyPart.Show();
+        }
+
 
         private void inhouseRadioButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -45,33 +90,29 @@ namespace MatthewEvans___BFM1___Software_I___C968
         private void saveButton_Click(object sender, EventArgs e)
         {
             if (inhouseRadioButton.Checked == true) 
-            { 
-                
-                Inhouse inhouse = new Inhouse
-                {
-                    PartID = int.Parse(idValue.Text),
-                    Name = nameValue.Text,
-                    Price = decimal.Parse(priceCostValue.Text),
-                    InStock = Int32.Parse(inventoryValue.Text),
-                    Min = Int32.Parse(minValue.Text),
-                    Max = Int32.Parse(maxValue.Text),
-                    MachineID = Int32.Parse(machineIDValue.Text)
-                };
+            {
 
-                if (inventoryLogic(inhouse) == 1) 
+                Inhouse inhouse = new Inhouse(int.Parse(idValue.Text), nameValue.Text, decimal.Parse(priceCostValue.Text), Int32.Parse(inventoryValue.Text), Int32.Parse(minValue.Text), Int32.Parse(maxValue.Text), Int32.Parse(machineIDValue.Text));
+
+                if (inventoryLogic(inhouse) == 1)
+                {
+                    inventory.updatePart(inhouse.PartID, inhouse);
+                    this.Close();
+                }
+                else if (inventoryLogic(inhouse) == 2) 
                 { 
                 inventory.addPart(inhouse);
                 this.Close();
                 }
-                else if (inventoryLogic(inhouse) == 2)
+                else if (inventoryLogic(inhouse) == 3)
                 {
                     MessageBox.Show("Inventory Below Min Values");
                 }
-                else if (inventoryLogic(inhouse) == 3)
+                else if (inventoryLogic(inhouse) == 4)
                 {
                     MessageBox.Show("Inventory Above Max Values");
                 }
-                else if (inventoryLogic(inhouse) == 4)
+                else if (inventoryLogic(inhouse) == 5)
                 {
                     MessageBox.Show("Check Price");
                 }
@@ -85,29 +126,25 @@ namespace MatthewEvans___BFM1___Software_I___C968
                 }
 
             }
-            else if (outsourcedRadioButton.Checked == true && nameValue.Text != "")
+            else if (outsourcedRadioButton.Checked == true)
             {
-                Outsourced outsourced = new Outsourced
-                {
-                    PartID = int.Parse(idValue.Text),
-                    Name = nameValue.Text,
-                    Price = decimal.Parse(priceCostValue.Text),
-                    InStock = Int32.Parse(inventoryValue.Text),
-                    Min = Int32.Parse(minValue.Text),
-                    Max = Int32.Parse(maxValue.Text),
-                    CompanyName = companyNameValue.Text
-                };
+                Outsourced outsourced = new Outsourced(int.Parse(idValue.Text), nameValue.Text, decimal.Parse(priceCostValue.Text), Int32.Parse(inventoryValue.Text), Int32.Parse(minValue.Text), Int32.Parse(maxValue.Text), companyNameValue.Text);
 
                 if (inventoryLogic(outsourced) == 1)
                 {
-                    inventory.addPart(outsourced);
+                    inventory.updatePart(outsourced.PartID, outsourced);
                     this.Close();
                 }
                 else if (inventoryLogic(outsourced) == 2)
                 {
-                    MessageBox.Show("Inventory Below Min Values");
+                    inventory.addPart(outsourced);
+                    this.Close();
                 }
                 else if (inventoryLogic(outsourced) == 3)
+                {
+                    MessageBox.Show("Inventory Below Min Values");
+                }
+                else if (inventoryLogic(outsourced) == 4)
                 {
                     MessageBox.Show("Inventory Above Max Values");
                 }
@@ -131,20 +168,24 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         private int inventoryLogic(Part part)
         {
-            if (part.InStock <= part.Max && part.InStock >= part.Min)
+            if (inventory.checkExistence(part) == true)
             {
                 return 1;
             }
-            else if (part.InStock < part.Min)
+            else if (part.InStock <= part.Max && part.InStock >= part.Min)
             {
                 return 2;
             }
-            else if (part.InStock > part.Max)
+            else if (part.InStock < part.Min)
             {
                 return 3;
             }
-            else if (decimal.TryParse(priceCostValue.Text, out decimal parsedValue)){
+            else if (part.InStock > part.Max)
+            {
                 return 4;
+            }
+            else if (decimal.TryParse(priceCostValue.Text, out decimal parsedValue)){
+                return 5;
             }
             else if (nameValue.Text == null)
             {
@@ -212,6 +253,45 @@ namespace MatthewEvans___BFM1___Software_I___C968
             }
 
 
+        }
+
+
+
+
+
+
+        private void partsPageSetup(Part part, partScreen modifyPart)
+        {
+            if (part is Inhouse)
+            {
+                //sets Inhouse Radio Button to true
+                modifyPart.inhouseRadioButton.Checked = true;
+
+                //shows Machine ID Label/Value and hides Company Name Label/Value
+                modifyPart.machineIDLabel.Show();
+                modifyPart.machineIDValue.Show();
+                modifyPart.modifyPartLabel.Show();
+                modifyPart.companyNameLabel.Hide();
+                modifyPart.companyNameValue.Hide();
+                modifyPart.addPartLabel.Hide();
+            }
+            else if (part is Outsourced)
+            {
+                //sets Inhouse Radio Button to true
+                modifyPart.outsourcedRadioButton.Checked = true;
+
+                //shows Machine ID Label/Value and hides Company Name Label/Value
+                modifyPart.companyNameLabel.Show();
+                modifyPart.companyNameValue.Show();
+                modifyPart.modifyPartLabel.Show();
+                modifyPart.machineIDLabel.Hide();
+                modifyPart.machineIDValue.Hide();
+                modifyPart.addPartLabel.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Part not Identified!");
+            }
         }
     }
     }
