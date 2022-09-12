@@ -29,7 +29,17 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         public productScreen(Product selectedProduct)
         {
+            productScreen modifyProduct = new productScreen();
 
+            //sets data from the passed in inhouse object
+            modifyProduct.idValue.Text = selectedProduct.ProductID.ToString();
+            modifyProduct.nameValue.Text = selectedProduct.Name.ToString();
+            modifyProduct.inventoryValue.Text = selectedProduct.InStock.ToString();
+            modifyProduct.priceCostValue.Text = selectedProduct.Price.ToString();
+            modifyProduct.maxValue.Text = selectedProduct.Max.ToString();
+            modifyProduct.minValue.Text = selectedProduct.Min.ToString();
+
+            modifyProduct.Show();
         }
 
         ////////////////
