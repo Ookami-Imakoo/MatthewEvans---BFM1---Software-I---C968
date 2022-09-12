@@ -9,6 +9,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -119,6 +120,23 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         }
 
+        //Parts - Search Button
+        //takes input from search text box and returns a message if found or not
+        private void partsSearchButton_Click(object sender, EventArgs e)
+        {
+            String searchInput = partsSearchValue.Text;
+
+            if(Regex.IsMatch(searchInput, @"^\d+$"))
+            {
+                inventory.lookupPart(Int32.Parse(searchInput));
+            }
+            else
+            {
+                inventory.lookupPart(searchInput);
+            }
+
+        }
+
         //MainScreen - EXIT Button
         //closes application
         private void exitButton_Click(object sender, EventArgs e)
@@ -126,32 +144,11 @@ namespace MatthewEvans___BFM1___Software_I___C968
             this.Close();
         }
 
-  
 
-        ////opens and populates modify products screen
-        //private void productsModifyButton_Click(object sender, EventArgs e)
-        //{
-        //    if (productsDataGridView.CurrentRow == null || !productsDataGridView.CurrentRow.Selected)
-        //    {
-        //        MessageBox.Show("Nothing Selected!", "Please Make A Selection");
-        //        return;
-        //    }
-        //    Product selectedProduct = productsDataGridView.CurrentRow.DataBoundItem as Product;
-        //    ModifyProduct modifyProduct = new ModifyProduct(selectedProduct);
-        //}
+        ///////////////
+        //// Misc ////
+        //////////////
 
-        //takes input from search text box and returns a message if found or not
-        private void partsSearchButton_Click(object sender, EventArgs e)
-        {
-            if (inventory.lookupPart(Int32.Parse(partsSearchValue.Text)) == null)
-            {
-                MessageBox.Show($"PartID: {Int32.Parse(partsSearchValue.Text)} was not found.");
-                return;
-            }
-            Part partlookup = inventory.lookupPart(Int32.Parse(partsSearchValue.Text));
-            MessageBox.Show($"Part { partlookup.Name } with PartID: { partlookup.PartID } was found.");
-        }
-        
         //Settings for main screen form
         private void MainScreenSetup()
         {
@@ -181,12 +178,10 @@ namespace MatthewEvans___BFM1___Software_I___C968
                 inventory.addPart(new Outsourced(9, "3/4 in. Push-to-Connect Brass Ball Valve", 26.97m, 22, 5, 100, "Yamaha"));
                 inventory.addPart(new Outsourced(10, "1/2 in. FIP x MHT Bras Flanged Sillcock Valve", 7.78m, 11, 5, 100, "Yamaha"));
 
-
                 //Product Sample Data
                 inventory.addProduct(new Product(1, "Riding Lawnmower", 6.99m, 2, 1, 10));
                 inventory.addProduct(new Product(2, "40 Gal. 36,000 BTU Tank Water Heater", 519.00m, 2, 0, 2));
                 inventory.addProduct(new Product(3, "Colorado 5-Light Black Modern Farmhouse Rectangular Chandelier", 353.00m, 0, 0, 5));
-
 
                 setupData++;
             }

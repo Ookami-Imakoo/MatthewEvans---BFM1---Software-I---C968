@@ -119,20 +119,72 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
         }
 
         /// <summary>
-        /// Refers to the function that will look up a part based on an integer (PartID) input
+        /// Refers to the function that will look up a part based on input in the partSearchValue textbox
         /// </summary>
-        /// <param name="x"> Refers to the Part ID to be looked up </param>
-        /// <returns> Returns the part if found and null if not found </returns>
-        public Part lookupPart(int x)
+        /// <param name="x"> Refers input from partSearchValue textbox </param>
+        public void lookupPart(int x)
         {
-            for (int i = 0; i < AllParts.Count; i++)
-            {
-                if (x == AllParts[i].PartID)
+            int i = 0;
+
+            while (i < AllParts.Count){
+                if (i == AllParts.Count - 1)
                 {
-                    return AllParts[i];
+                    if (x == AllParts[i].PartID)
+                    {
+                        MessageBox.Show($"Part with id: {x} was found.");
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"No part with id: {x} was found.");
+                        return;
+                    }
+                }
+                else if (x == AllParts[i].PartID)
+                {
+                    MessageBox.Show($"Part with id: {x} was found.");
+                    return;
+                }
+                else if (x != AllParts[i].PartID)
+                {
+                    i++;
+                } 
+            }
+        }
+
+        /// <summary>
+        /// Refers to the function that will look up a part based on input in the partSearchValue textbox
+        /// </summary>
+        /// <param name="x"> Refers input from partSearchValue textbox </param>
+        public void lookupPart(String x)
+        {
+            int i = 0;
+
+            while (i < AllParts.Count)
+            {
+                if (i == AllParts.Count - 1)
+                {
+                    if (x == AllParts[i].Name)
+                    {
+                        MessageBox.Show($"Part with Name: {x} was found.");
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"No part with Name: {x} was found.");
+                        return;
+                    }
+                }
+                else if (x == AllParts[i].Name)
+                {
+                    MessageBox.Show($"Part with Name: {x} Name found.");
+                    return;
+                }
+                else if (x != AllParts[i].Name)
+                {
+                    i++;
                 }
             }
-            return null;
         }
 
         /// <summary>
