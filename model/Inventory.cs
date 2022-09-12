@@ -232,14 +232,8 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
         /// <param name="myPart"> Represents the part to be placed in the list after the removal of the old data. </param>
         public void updatePart(int x, Part myPart)
         {
-            for (int i = 0; i < AllParts.Count; i++)
-            {
-                if (x == myPart.PartID)
-                {
-                    AllParts.RemoveAt(x);
-                    AllParts.Add(myPart);
-                }
-            }
+            AllParts.RemoveAt(x - 1);
+            AllParts.Add(myPart);
         }
 
         //private void addPartNumber(int i)
@@ -309,6 +303,11 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
         {
             Part part = AllParts[x];
             return part;
+        }
+
+        public bool checkExistence()
+        {
+            return true;
         }
     }
 }

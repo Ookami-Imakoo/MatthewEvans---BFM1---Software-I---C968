@@ -94,20 +94,25 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
                 Inhouse inhouse = new Inhouse(int.Parse(idValue.Text), nameValue.Text, decimal.Parse(priceCostValue.Text), Int32.Parse(inventoryValue.Text), Int32.Parse(minValue.Text), Int32.Parse(maxValue.Text), Int32.Parse(machineIDValue.Text));
 
-                if (inventoryLogic(inhouse) == 1) 
+                if (inventoryLogic(inhouse) == 1)
+                {
+                    inventory.updatePart(inhouse.PartID, inhouse);
+                    this.Close();
+                }
+                else if (inventoryLogic(inhouse) == 2) 
                 { 
                 inventory.addPart(inhouse);
                 this.Close();
                 }
-                else if (inventoryLogic(inhouse) == 2)
+                else if (inventoryLogic(inhouse) == 3)
                 {
                     MessageBox.Show("Inventory Below Min Values");
                 }
-                else if (inventoryLogic(inhouse) == 3)
+                else if (inventoryLogic(inhouse) == 4)
                 {
                     MessageBox.Show("Inventory Above Max Values");
                 }
-                else if (inventoryLogic(inhouse) == 4)
+                else if (inventoryLogic(inhouse) == 5)
                 {
                     MessageBox.Show("Check Price");
                 }
@@ -121,20 +126,25 @@ namespace MatthewEvans___BFM1___Software_I___C968
                 }
 
             }
-            else if (outsourcedRadioButton.Checked == true && nameValue.Text != "")
+            else if (outsourcedRadioButton.Checked == true)
             {
                 Outsourced outsourced = new Outsourced(int.Parse(idValue.Text), nameValue.Text, decimal.Parse(priceCostValue.Text), Int32.Parse(inventoryValue.Text), Int32.Parse(minValue.Text), Int32.Parse(maxValue.Text), companyNameValue.Text);
 
                 if (inventoryLogic(outsourced) == 1)
                 {
-                    inventory.addPart(outsourced);
+                    inventory.updatePart(outsourced.PartID, outsourced);
                     this.Close();
                 }
                 else if (inventoryLogic(outsourced) == 2)
                 {
-                    MessageBox.Show("Inventory Below Min Values");
+                    inventory.addPart(outsourced);
+                    this.Close();
                 }
                 else if (inventoryLogic(outsourced) == 3)
+                {
+                    MessageBox.Show("Inventory Below Min Values");
+                }
+                else if (inventoryLogic(outsourced) == 4)
                 {
                     MessageBox.Show("Inventory Above Max Values");
                 }
@@ -158,20 +168,24 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         private int inventoryLogic(Part part)
         {
-            if (part.InStock <= part.Max && part.InStock >= part.Min)
+            if (inventory.checkExistence() == true)
             {
                 return 1;
             }
-            else if (part.InStock < part.Min)
+            else if (part.InStock <= part.Max && part.InStock >= part.Min)
             {
                 return 2;
             }
-            else if (part.InStock > part.Max)
+            else if (part.InStock < part.Min)
             {
                 return 3;
             }
-            else if (decimal.TryParse(priceCostValue.Text, out decimal parsedValue)){
+            else if (part.InStock > part.Max)
+            {
                 return 4;
+            }
+            else if (decimal.TryParse(priceCostValue.Text, out decimal parsedValue)){
+                return 5;
             }
             else if (nameValue.Text == null)
             {
