@@ -296,7 +296,51 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
 
         public int productIDGenerator()
         {
-            return Products.Count + 00001;
+            int i = 0;
+            int missingEntry = 0;
+
+            do
+            {
+                if (Products.Count == 0)
+                {
+                    return 1;
+                }
+                else if (Products[0].ProductID > 1)
+                {
+                    missingEntry = 1;
+                    break;
+                }
+                else if ((i + 1) == Products[i].ProductID)
+                {
+                    i++;
+                    continue;
+                }
+                else
+                {
+                    missingEntry = (Products[i].ProductID - 1);
+                    break;
+                }
+            }
+            while (i != Products.Count);
+
+            do
+            {
+                if (i == Products.Count)
+                {
+                    return (Products.Count + 1);
+                }
+                else if (missingEntry != Products[i].ProductID)
+                {
+                    i++;
+                    continue;
+                }
+                else if (missingEntry == Products[i].ProductID)
+                {
+                    return (Products.Count + 1);
+                }
+            }
+            while (i != Products.Count);
+            return missingEntry;
         }
 
         public Part dataSetup(int x)

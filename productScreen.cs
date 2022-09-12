@@ -41,7 +41,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
         {
             Product product = new Product
             {
-                ProductID = 1,
+                ProductID = int.Parse(idValue.Text),
                 Name = nameValue.Text,
                 InStock = int.Parse(inventoryValue.Text),
                 Price = decimal.Parse(priceCostValue.Text),
@@ -140,15 +140,6 @@ namespace MatthewEvans___BFM1___Software_I___C968
                 return 0;
             }
         }
-
-        //private void InvetoryLogicSwitch(Product product)
-        //{
-        //    switch (product)
-        //    {
-        //        case product.InStock <= product.Max:
-        //    }
-        //}
-
 
         //closes add product screen
         private void productCancelButton_Click(object sender, EventArgs e)
