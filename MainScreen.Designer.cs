@@ -182,6 +182,7 @@
             this.productsSearchButton.TabIndex = 9;
             this.productsSearchButton.Text = "Search";
             this.productsSearchButton.UseVisualStyleBackColor = true;
+            this.productsSearchButton.Click += new System.EventHandler(this.productsSearchButton_Click);
             // 
             // productsDataGridView
             // 

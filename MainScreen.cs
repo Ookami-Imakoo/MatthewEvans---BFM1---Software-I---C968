@@ -137,6 +137,22 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         }
 
+        //Product - Search Button
+        //takes input from search text box and returns a message if found or not
+        private void productsSearchButton_Click(object sender, EventArgs e)
+        {
+            String searchInput = productsSearchValue.Text;
+
+            if (Regex.IsMatch(searchInput, @"^\d+$"))
+            {
+                inventory.lookupProudct(Int32.Parse(searchInput));
+            }
+            else
+            {
+                inventory.lookupProudct(searchInput);
+            }
+        }
+
         //MainScreen - EXIT Button
         //closes application
         private void exitButton_Click(object sender, EventArgs e)

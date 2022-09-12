@@ -43,38 +43,6 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
         }
 
         /// <summary>
-        /// Represents a function that looks up a product useing the product ID.
-        /// </summary>
-        /// <param name="x"> Represents the Product ID to be searched. </param>
-        /// <returns> Returns the product with the corisponding Product ID. </returns>
-        //public Product lookupProduct(int x)
-        //{
-        //    for (int i = 0; i < Products.Count; i++)
-        //    {
-        //        if (x == product.ProductID)
-        //        {
-        //            return Products[x];
-        //        }
-        //    }
-        //    return null;
-        //}
-
-        /*
-         * Still unsure what to do with this function, hopeing that it will be more clear as I put the application together.
-         * 
-        public void updateProduct(int x, Product myProduct)
-        {
-            for (int i = 0 ; i < Products.Count ; i++)
-            {
-                if (x == myProduct.ProductID)
-                {
-                    Products.Remove[i];
-                }
-            }
-        }
-        */
-
-        /// <summary>
         /// Represents a function that adds a Part to the All Parts list.
         /// </summary>
         /// <param name=""> Represents a part to be addded to the All Parts list. </param>
@@ -181,6 +149,76 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
                     return;
                 }
                 else if (x != AllParts[i].Name)
+                {
+                    i++;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Refers to the function that will look up a part based on input in the partSearchValue textbox
+        /// </summary>
+        /// <param name="x"> Refers input from partSearchValue textbox </param>
+        public void lookupProudct(int x)
+        {
+            int i = 0;
+
+            while (i < Products.Count)
+            {
+                if (i == Products.Count - 1)
+                {
+                    if (x == Products[i].ProductID)
+                    {
+                        MessageBox.Show($"Product with ID: {x} was found.");
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"No Product with ID: {x} was found.");
+                        return;
+                    }
+                }
+                else if (x == Products[i].ProductID)
+                {
+                    MessageBox.Show($"Product with ID: {x} was found.");
+                    return;
+                }
+                else if (x != Products[i].ProductID)
+                {
+                    i++;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Refers to the function that will look up a part based on input in the partSearchValue textbox
+        /// </summary>
+        /// <param name="x"> Refers input from partSearchValue textbox </param>
+        public void lookupProudct(String x)
+        {
+            int i = 0;
+
+            while (i < Products.Count)
+            {
+                if (i == Products.Count - 1)
+                {
+                    if (x == Products[i].Name)
+                    {
+                        MessageBox.Show($"Product with Name: {x} was found.");
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"No Product with Name: {x} was found.");
+                        return;
+                    }
+                }
+                else if (x == Products[i].Name)
+                {
+                    MessageBox.Show($"Product with Name: {x} was found.");
+                    return;
+                }
+                else if (x != Products[i].Name)
                 {
                     i++;
                 }
