@@ -168,7 +168,7 @@ namespace MatthewEvans___BFM1___Software_I___C968
 
         private int inventoryLogic(Part part)
         {
-            if (inventory.checkExistence() == true)
+            if (inventory.checkExistence(part) == true)
             {
                 return 1;
             }

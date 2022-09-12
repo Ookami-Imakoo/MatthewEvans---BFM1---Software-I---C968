@@ -305,9 +305,15 @@ namespace MatthewEvans___BFM1___Software_I___C968.model
             return part;
         }
 
-        public bool checkExistence()
+        public bool checkExistence(Part part)
         {
-            return true;
+            for (int i = 0; i < AllParts.Count; i++){
+                if (AllParts[i].PartID == part.PartID)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
